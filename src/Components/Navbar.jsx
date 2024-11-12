@@ -48,7 +48,7 @@ export default function Navbar() {
           // }}
         
         >
-          Prabhakar &nbsp;Rajput
+          Prabhakar
         </div>
 
         {/* Color Options */}
