@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all 0.5s ease-in-out;
+
     border-radius: 10px;
 }
 
@@ -38,20 +38,25 @@
 /* Icon styles */
 .card i {
     font-size: 50px;
-    color: #FFC107;
+    /* color: #FFC107; */
+    color: #7b0599;
     margin-bottom: 10px;
 }
 
 .card:hover {
-    background-color: #FFC107;
-    color: white;
+    /* background-color: #FFC107; */
+    /* background-color: #a21ac4e0; */
+    background: linear-gradient(top to bottom, #bd49da, #d1447ae1, #bd49da);
+    font-weight: bold;
+    /* color: white; */
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
     transform: translateY(-10px);
     transition: all ease-in-out .5s;
 }
 
 .card:hover i {
-    color: white;
+    color: black;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Responsive adjustments for smaller screens */

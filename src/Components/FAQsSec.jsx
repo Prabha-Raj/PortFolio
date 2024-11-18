@@ -57,9 +57,11 @@ export default function FAQsSec() {
             </div>
             <div className="right w-2/5" data-aos="fade-left">
                 <img
-                    src="https://harnishdesign.net/demo/react/callum/demo/images/faq.png"
+                    // src="https://harnishdesign.net/demo/react/callum/demo/images/faq.png"
+                    src="https://w1.pngwing.com/pngs/430/899/png-transparent-light-bulb-light-incandescent-light-bulb-lamp-electric-light-idea-symbol-lighting-purple-pink-thumbnail.png"
                     alt="faq_image"
                     data-aos="zoom-in"
+                    className="w-full"
                 />
             </div>
         </div>

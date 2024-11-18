@@ -55,11 +55,11 @@ const ContactSec = () => {
     <div id='ContactMe' className="contact-sec flex max-md:flex-col max-md:gap-10 items-center justify-around py-10 px-6 gap-8 md:gap-16 bg-yellow-400">
       {/* Left Section */}
       <div data-aos="fade-right" className="left max-w-lg flex flex-col gap-5">
-        <h1 className="text-5xl font-bold text-gray-800">Let's get in touch</h1>
-        <p className="text-gray-600 text-xl">
+        <h1 className="text-5xl font-bold text-gray-950">Let's get in touch</h1>
+        <p className="text-gray-900 text-xl">
           I enjoy discussing new projects and design challenges. Please share as much info as possible, so we can get the most out of our first catch-up.
         </p>
-        <div className="contact-info text-gray-700 flex flex-col gap-3">
+        <div className="contact-info text-gray-800 flex flex-col gap-3">
           <p className="text-lg" data-aos="fade-up" data-aos-delay="100">
             <span className="font-bold text-xl">Living In:</span> <br /> Aliganj Sactor A Lucknow, Uttar Pradesh, India.
           </p>
@@ -77,37 +77,37 @@ const ContactSec = () => {
         <h1 className="text-3xl font-bold text-gray-800">Estimate your Project</h1>
         <form onSubmit={submitEventHandler} className="flex flex-col justify-around gap-4 w-full p-5">
           <div className="form-group flex flex-col" data-aos="fade-up" data-aos-delay="100">
-            <label htmlFor="name" className="text-gray-600 text-xl mb-2">What is Your Name:</label>
+            <label htmlFor="name" className="text-gray-900 text-xl mb-2">What is Your Name:</label>
             <input
               type="text"
               name="name"
               id="name"
-              className="p-3 border-b-2 text-white text-xl font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
+              className="p-3 border-b-2 text-white placeholder:text-gray-600 text-xl font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
               placeholder="Enter your name"
               value={formData.name}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group flex flex-col" data-aos="fade-up" data-aos-delay="200">
-            <label htmlFor="email" className="text-gray-600 text-xl mb-2">Your Email Address:</label>
+            <label htmlFor="email" className="text-gray-900 text-xl mb-2">Your Email Address:</label>
             <input
               type="email"
               name="email"
               id="email"
-              className="p-3 border-b-2 text-white text-xl font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
+              className="p-3 border-b-2 text-white text-xl placeholder:text-gray-600 font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group flex flex-col" data-aos="fade-up" data-aos-delay="300">
-            <label htmlFor="message" className="text-gray-600 text-xl mb-2">How Can I Help You?</label>
+            <label htmlFor="message" className="text-gray-900 text-xl mb-2">How Can I Help You?</label>
             <textarea
               name="message"
               id="message"
               cols="30"
               rows="5"
-              className="p-3 border-b-2 text-white text-xl font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
+              className="p-3 border-b-2 text-white text-xl placeholder:text-gray-600 font-bold focus:outline-none focus:border-yellow-500 bg-transparent"
               placeholder="Describe your project needs"
               value={formData.message}
               onChange={handleInputChange}
@@ -116,7 +116,7 @@ const ContactSec = () => {
           <button
             type="submit"
             style={{ margin: '0 auto' }}
-            className="w-3/5 bg-yellow-400 text-white text-xl font-bold py-3 hover:bg-black transition-colors"
+            className="w-3/5 bg-yellow-400 hover:text-white border-2 border-black text-xl font-bold py-3 hover:bg-black transition-colors"
             disabled={loading}
             // data-aos="zoom-in"
             // data-aos-delay="400"

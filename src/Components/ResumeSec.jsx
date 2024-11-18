@@ -16,8 +16,8 @@ export default function ResumeSec() {
     return (
         <>
             <div id="MyResume" className="resume_heading text-center mt-5">
-                <p data-aos="fade-up" data-aos-duration="800"><span className="bg-yellow-400 px-1">Resume</span></p>
-                <p data-aos="fade-up" data-aos-duration="1200" className="text-4xl max-md:text-2xl max-md:px-3 font-bold text-gray-800">A summary of My Resume</p>
+                <p data-aos="fade-up" data-aos-duration="800"><span className="bg-[#9626b3] text-white px-5 py-2 text-xl">Resume</span></p>
+                <p data-aos="fade-up" data-aos-duration="1200" className="text-4xl max-md:text-2xl max-md:px-3 font-bold text-gray-800 my-5">A summary of My Resume</p>
             </div>
 
             <div className="main-sec flex items-start justify-around gap-5 px-32 max-md:px-16 h-full my-10 max-md:flex-col">
@@ -29,7 +29,7 @@ export default function ResumeSec() {
                     className="education-sec w-1/2 max-sm:w-full"
                 >
                     <h1 className="text-3xl max-md:xl font-bold my-8" data-aos="fade-up">My Education</h1>
-                    <div className="edu-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-yellow-400">
+                    <div className="edu-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-[#9626b3]">
                         <h3 className="text-xl font-semibold" data-aos="fade-up">Diploma in Computer Science & Engineering</h3>
                         <span className="font-semibold text-gray-700" data-aos="fade-up">Board of Technical Education Uttar Pradesh / 2021 - 2024</span>
                         <p className="text-gray-500" data-aos="fade-up">My diploma in Computer Science & Engineering provided a strong foundation in software development and engineering fundamentals, with coursework in:</p>
@@ -68,7 +68,7 @@ export default function ResumeSec() {
                     className="experience-sec w-1/2 max-sm:w-full"
                 >
                     <h1 className="text-3xl max-md:xl font-bold my-8" data-aos="fade-up">My Experience</h1>
-                    <div className="ex-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-yellow-400">
+                    <div className="ex-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-[#9626b3]">
                         <h3 className="text-xl font-semibold" data-aos="fade-up">Jr. Developer</h3>
                         <span className="font-semibold text-gray-700" data-aos="fade-up">DigiCoders Technologies Pvt Ltd Lucknow / Aug-2024 - Present</span>
                         <p className="text-gray-500" data-aos="fade-up">In my role as an Associate Jr. Developer at Digicoders Technologies, I am responsible for developing and enhancing web applications with a focus on frontend technologies, particularly using React. My work involves:</p>

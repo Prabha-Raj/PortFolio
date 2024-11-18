@@ -19,7 +19,7 @@ export default function AboutSec() {
       className="section flex flex-col max-md:px-0 items-center justify-center gap-2 py-20 overflow-x-hidden"
     >
       <p>
-        <span className="bg-yellow-300 px-1">About Me</span>
+        <span className="bg-[#9626b3] text-white px-5 py-2 text-xl">About Me</span>
       </p>
       <h2 className="text-3xl font-bold max-md:text-2xl" data-aos="fade-up">
         Know Me More
@@ -30,7 +30,7 @@ export default function AboutSec() {
       >
         <div className="about-left w-2/3 max-md:w-full px-5 " data-aos="fade-right">
           <p className="text-4xl max-md:text-xl">
-            Hi, I'm <span className="font-bold">Prabhakar Rajput</span>
+            Hi, I'm <span className="font-bold text-[#a034bb]">Prabhakar Rajput</span>
           </p>
           <p className="text-2xl max-md:text-base mt-2 leading-relaxed">
             I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and
@@ -43,7 +43,7 @@ export default function AboutSec() {
           className="about-right flex flex-col items-center justify-center gap-7 max-md:w-full"
           data-aos="fade-left"
         >
-          <div className="h-32 w-32 max-md:w-full bg-amber-300 rounded-full flex items-center content-center justify-center pb-3">
+          <div className="h-32 w-32 max-md:w-full bg-[#bd49da] rounded-full flex items-center content-center justify-center pb-3">
             <span className="text-9xl font-bold">01</span>
           </div>
           <p className="text-2xl font-medium">

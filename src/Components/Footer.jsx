@@ -184,7 +184,7 @@ const Footer = () => {
           <button
             type="submit"
             style={{ margin: '0 auto' }}
-            className="w-[200px] bg-yellow-400 text-white text-xl font-bold py-3 hover:bg-black transition-colors"
+            className="w-[200px] bg-yellow-400 hover:text-black  text-black text-xl font-bold py-3 hover:bg-white transition-colors"
             disabled={loading}
             data-aos="zoom-in"
             data-aos-delay="400"

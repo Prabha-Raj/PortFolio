@@ -33,7 +33,7 @@ export default function Navbar() {
       {/* Navbar Container */}
       <div
         // style={{ backgroundColor: bgColor, color: textColor }}
-        className="navbar-container z-30 flex items-center justify-between px-20 max-ms:px-1 max-ms:justify-around gap-5 h-14 w-full sticky top-0 left-0 right-0"
+        className="navbar-container z-30 bg-gradient-to-r from-[#bd49da] via-pink-300 to-[#bd49da] flex items-center justify-between px-20 max-ms:px-1 max-ms:justify-around gap-5 h-14 w-full sticky top-0 left-0 right-0"
         data-aos="fade-down"
       >
         <div  className="nav_left text-sm font-bold md:text-2xl uppercase" data-aos="fade-right" data-aos-delay="100"

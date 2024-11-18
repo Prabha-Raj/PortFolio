@@ -44,9 +44,9 @@ export default function HeroSec() {
         data-aos-duration="1000"
         data-aos-delay="200"
         >
-          Hi, I'm a <span className="text-[#B415FF]">Web Developer</span>
+          Hi, I'm a <span className="text-[#b64be7]">Web Developer</span>
         </h1>
-        <span className="text-8xl max-md:text-5xl lg:text-7xl font-bold uppercase"
+        <span className="text-8xl max-md:text-5xl lg:text-7xl font-bold text-[#b415ff] uppercase"
          data-aos="zoom-in"
          data-aos-duration="1000"
          data-aos-delay="200"
@@ -86,9 +86,10 @@ export default function HeroSec() {
         data-aos-duration="2000"
         data-aos-delay="200"
       >
-        <div className="h-96 w-96 max-md:h-72 max-md:w-72 bg-black border-8 border-yellow-500 rounded-full flex items-center justify-center">
+        <div className="h-94 w-96 max-md:h-72 max-md:w-7 border-8  rounded-full flex items-center justify-center">
           <img
-            src="images/profile_pic.jpg"
+            // src="images/profile_pic.jpg"
+            src="images/Prabhakar_half_size_2.jpg"
             alt="Profile"
             className="h-96 w-96 max-md:h-72 max-md:w-72 rounded-full"
           />

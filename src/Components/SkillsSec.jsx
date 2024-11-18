@@ -48,7 +48,7 @@
                                     </div>
                                     <div className="w-full h-2 bg-slate-50">
                                         <div
-                                            className="h-2 bg-yellow-300 z-[-3]"
+                                            className="h-2 bg-[#9626b3] rounded-2xl z-[-3]"
                                             style={{
                                                 
                                                 width: 0, // Start at 0 width
@@ -65,7 +65,7 @@
                     </div>
                     <div data-aos="zoom-in" className="text-center my-16">
                         <a href={resume} target="_blank" rel="noopener noreferrer" >
-                            <button className="h-14 w-56 border-2 border-black text-black hover:text-white hover:bg-black">
+                            <button className="h-14 w-56 border-4 font-bold border-black text-black hover:text-white hover:bg-black">
                                 Download CV
                             </button>
                         </a>
