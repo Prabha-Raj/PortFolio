@@ -54,7 +54,7 @@ const Footer = () => {
 
 
   return (
-    <div className='bg-black'>
+    <div className='bg-black '>
         <div className="footer h-auto w-full bg-black text-white flex items-center justify-around py-8 px-4 max-sm:flex-col max-sm:gap-6 max-sm:px-2">
       <div className="footer-content flex gap-12 max-sm:flex-col max-sm:items-center max-sm:text-center">
         {/* Left Section */}

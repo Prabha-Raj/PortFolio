@@ -44,7 +44,7 @@ export default function HeroSec() {
         data-aos-duration="1000"
         data-aos-delay="200"
         >
-          Hi, I'm a <span className="text-[#b64be7]">Web Developer</span>
+          Hi, I am a <span className="text-[#b64be7]">Web Developer</span>
         </h1>
         <span className="text-8xl max-md:text-5xl lg:text-7xl font-bold text-[#b415ff] uppercase"
          data-aos="zoom-in"
@@ -60,7 +60,7 @@ export default function HeroSec() {
         >
           Located in Lucknow, Uttar Pradesh, India.
         </p>
-        <div className="grid grid-flow-col gap-x-10 max-md:gap-x-5 items-center">
+        <div className="flex items-center justify-center gap-5">
           <button className="h-12 w-40 bg-black text-white"
           data-aos="slide-right"
           data-aos-duration="1000"
@@ -86,7 +86,7 @@ export default function HeroSec() {
         data-aos-duration="2000"
         data-aos-delay="200"
       >
-        <div className="h-94 w-96 max-md:h-72 max-md:w-7 border-8  rounded-full flex items-center justify-center">
+        <div className="h-94 w-96 max-md:h-72 max-md:w-72 border-8  rounded-full flex items-center justify-center">
           <img
             // src="images/profile_pic.jpg"
             src="images/Prabhakar_half_size_2.jpg"

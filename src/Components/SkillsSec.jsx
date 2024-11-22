@@ -18,7 +18,7 @@
             <>
                 <div id="skills" className="w-full skills-container p-10 max-md:px-16 px-32">
                     <h1 className="text-2xl font-bold">My Skills</h1>
-                    <div className="max-md:w-screen skills-wrapper grid grid-cols-2 flex-wrap gap-5 my-5">
+                    <div className="max-md:w-full skills-wrapper grid grid-cols-2 max-md:grid-cols-1 flex-wrap gap-5 my-5">
                         {/** Skills List */}
                         {[
                             { name: "MERN Stack", percentage: 75 },

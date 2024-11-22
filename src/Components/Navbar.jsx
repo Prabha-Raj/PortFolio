@@ -59,10 +59,10 @@ export default function Navbar() {
         </div> */}
 
         <div className="nav_right flex justify-between items-center gap-10 max-sm:gap-2" data-aos="fade-left" data-aos-delay="200">
-          <div className="max-sm:text-xs max-sm:text-amber-600">
+          <div className="max-sm:text-xs font-bold">
             <i className="ri-phone-fill fa-spin"></i>
             &nbsp;&nbsp;
-            <span >+91,8640049758</span>
+            <span >(+91) 8630049758, 7668569926</span>
           </div>
           <i className={openMenu ? " " : "ri-menu-line font-bold text-3xl"} onClick={handleChange}></i>
         </div>
