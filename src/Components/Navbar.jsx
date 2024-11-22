@@ -62,7 +62,7 @@ export default function Navbar() {
           <div className="max-sm:text-xs font-bold">
             <i className="ri-phone-fill fa-spin"></i>
             &nbsp;&nbsp;
-            <span >(+91) 8630049758, 7668569926</span>
+            <span >(+91) 8630049758</span>
           </div>
           <i className={openMenu ? " " : "ri-menu-line font-bold text-3xl"} onClick={handleChange}></i>
         </div>
