@@ -1,116 +1,209 @@
-import { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
+
+const navLinks = [
+  { id: "home", label: "Home", highlight: true },
+  { id: "about", label: "About Me" },
+  { id: "services", label: "What I Do" },
+  { id: "resume", label: "My Resume" },
+  { id: "portfolio", label: "Portfolio" },
+  { id: "faqs", label: "FAQs" },
+  { id: "testimonials", label: "Clients Reviews" },
+  { id: "contact", label: "Contact Me" }
+];
+
+const socialLinks = [
+  { icon: "ri-twitter-fill", url: "https://twitter.com" },
+  { icon: "ri-facebook-fill", url: "https://facebook.com" },
+  { icon: "ri-instagram-line", url: "https://instagram.com" },
+  { icon: "ri-github-fill", url: "https://github.com" },
+  { icon: "ri-linkedin-fill", url: "https://linkedin.com" }
+];
 
 export default function Navbar() {
-  const [openMenu, setOpenMenu] = useState(false);
+  const { currentTheme, themes, switchTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    AOS.init({ duration: 600 });
-  }, []);
+  const { 
+    navBg, 
+    textColor, 
+    highlight,
+    fontFamily,
+    button,
+    specialText 
+  } = currentTheme;
 
-  function handleChange() {
-    setOpenMenu(!openMenu);
-  }
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const changeTheme = () => {
+    const currentIndex = themes.findIndex(t => t.name === currentTheme.name);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    switchTheme(themes[nextIndex].name);
+  };
 
-  // function blackTheme() {
-  //   setBgColor("black");
-  //   setTextColor("white");
-  // }
+  // Animation variants
+  const navVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 300, damping: 25 }
+    }
+  };
 
-  // function redTheme() {
-  //   setBgColor("red");
-  //   setTextColor("white");
-  // }
-
-  // function purpleTheme() {
-  //   setBgColor("#B415FF");
-  //   setTextColor("white");
-  // }
+  const menuItemVariants = {
+    closed: { x: -50, opacity: 0 },
+    open: (i) => ({
+      x: 0,
+      opacity: 1,
+      transition: { delay: i * 0.1 }
+    })
+  };
 
   return (
     <>
-      {/* Navbar Container */}
-      <div
-        // style={{ backgroundColor: bgColor, color: textColor }}
-        className="navbar-container z-30 bg-gradient-to-r from-[#bd49da] via-pink-300 to-[#bd49da] flex items-center justify-between px-20 max-ms:px-1 max-ms:justify-around gap-5 h-14 w-full sticky top-0 left-0 right-0"
-        data-aos="fade-down"
+      {/* Main Navigation Bar */}
+      <motion.nav
+        initial="hidden"
+        animate="visible"
+        variants={navVariants}
+        className={`${navBg} ${fontFamily} fixed w-full top-0 z-50 backdrop-blur-md border-b border-gray-800/30`}
       >
-        <div  className="nav_left text-sm font-bold md:text-2xl uppercase" data-aos="fade-right" data-aos-delay="100"
-          // style={{
-          //   background: "linear-gradient(270deg, #DF8908 10%, #B415FF 100%)",
-          //   WebkitBackgroundClip: "text",
-          //   color:  "transparent",
+        <div className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+          {/* Logo/Brand */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className={`${specialText} text-xl sm:text-2xl font-bold`}
+          >
+            Prabhakar
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+            <div className="flex gap-4 lg:gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  className={`${link.highlight ? highlight : textColor} hover:${highlight} transition-colors font-medium text-sm lg:text-base`}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3 lg:gap-4">
+              <button
+                onClick={changeTheme}
+                className={`${textColor} hover:${highlight} text-xl transition-colors`}
+                aria-label="Switch theme"
+              >
+                <i className="ri-contrast-2-fill"></i>
+              </button>
+              
+              <a 
+                href="tel:+918630049758" 
+                className={`flex items-center gap-1 ${textColor} text-sm lg:text-base`}
+              >
+                <i className="ri-phone-fill"></i>
+                <span className="hidden lg:inline">+91 8630049758</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={changeTheme}
+              className={`${textColor} text-xl`}
+              aria-label="Switch theme"
+            >
+              <i className="ri-contrast-2-fill"></i>
+            </button>
             
-          // }}
-          // style={{
-          //     color:textColor
-          // }}
-        
-        >
-          Prabhakar
-        </div>
-
-        {/* Color Options */}
-        {/* <div className="flex items-center justify-center gap-1">
-          <div onClick={blackTheme} className="cursor-pointer bg-black h-5 w-5 rounded-full border border-2-white"></div>
-          <div onClick={redTheme} className="cursor-pointer bg-red-600 h-5 w-5 rounded-full border border-2-white"></div>
-          <div onClick={purpleTheme} className="cursor-pointer bg-[#B415FF] h-5 w-5 rounded-full border border-2-white"></div>
-        </div> */}
-
-        <div className="nav_right flex justify-between items-center gap-10 max-sm:gap-2" data-aos="fade-left" data-aos-delay="200">
-          <div className="max-sm:text-xs font-bold">
-            <i className="ri-phone-fill fa-spin"></i>
-            &nbsp;&nbsp;
-            <span >(+91) 8630049758</span>
-          </div>
-          <i className={openMenu ? " " : "ri-menu-line font-bold text-3xl"} onClick={handleChange}></i>
-        </div>
-      </div>
-
-      {/* Menu Overlay */}
-      {openMenu && (
-        <div
-          style={{ backgroundColor: "rgba(0,0,0,.9)" }}
-          className="openMenu text-2xl h-screen w-screen text-white fixed top-10 bottom-0 left-0 right-0 flex flex-col items-center justify-center gap-20 z-20"
-          data-aos="fade-in"
-        >
-          <div className="first absolute top-10 right-20 max-sm:top-5 max-sm:right-10" data-aos="fade-up" data-aos-delay="100">
-            <i className="ri-close-line" onClick={handleChange}></i>
-          </div>
-
-          {/* Navigation Links */}
-          <div className="second grid items-center grid-flow-row gap-4 text-xl font-bold text-center" data-aos="zoom-in" data-aos-delay="200">
-            <h1 className="text-yellow-400"><a href="#Home" onClick={handleChange}>Home</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#AboutMe" onClick={handleChange}>About Me</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#WhatIDo" onClick={handleChange}>What I Do</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#MyResume" onClick={handleChange}>My Resume</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#Portfolio" onClick={handleChange}>Portfolio</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#FAQs" onClick={handleChange}>FAQs</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#ClientsReviews" onClick={handleChange}>Clients Reviews</a></h1>
-            <h1 className="hover:text-yellow-400"><a href="#ContactMe" onClick={handleChange}>Contact Me</a></h1>
-          </div>
-
-          {/* Social Icons */}
-          <div className="social-icons flex gap-4 text-4xl text-gray-200">
-            <a href="https://x.com/codingworld434?t=-hK2IC1TGFqW--EusfmpYg&s=09" target="_blank" rel="noopener noreferrer">
-              <i className="ri-twitter-fill cursor-pointer hover:text-blue-500"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=100057055627269&mibextid=JRoKGi" target="_blank" rel="noopener noreferrer">
-              <i className="ri-facebook-circle-fill cursor-pointer hover:text-blue-600"></i>
-            </a>
-            <a href="https://www.instagram.com/coding_lover_boy_2.0/profilecard/?igsh=aDl1M2hqenM5cTFx" target="_blank" rel="noopener noreferrer">
-              <i className="ri-instagram-line cursor-pointer hover:text-pink-500"></i>
-            </a>
-            <a href="https://github.com/Prabha-Raj" target="_blank" rel="noopener noreferrer">
-              <i className="ri-github-fill cursor-pointer hover:text-gray-800"></i>
-            </a>
-            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">
-              <i className="ri-dribbble-fill cursor-pointer hover:text-pink-400"></i>
-            </a>
+            <button
+              onClick={toggleMenu}
+              className={`${textColor} text-2xl`}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <i className="ri-close-line"></i>
+              ) : (
+                <i className="ri-menu-line"></i>
+              )}
+            </button>
           </div>
         </div>
-      )}
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`fixed inset-0 bg-black/95 z-40 pt-20 ${fontFamily}`}
+          >
+            <div className="container mx-auto px-6 flex flex-col h-full">
+              {/* Close Button */}
+              <button
+                onClick={toggleMenu}
+                className={`absolute top-5 right-5 ${textColor} text-2xl`}
+                aria-label="Close menu"
+              >
+                <i className="ri-close-line"></i>
+              </button>
+
+              {/* Navigation Links */}
+              <motion.div 
+                className="flex flex-col gap-8 text-center mt-12"
+                initial="closed"
+                animate="open"
+              >
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    variants={menuItemVariants}
+                    custom={i}
+                    whileHover={{ scale: 1.05 }}
+                    className={`text-2xl ${link.highlight ? highlight : textColor} font-bold`}
+                    onClick={toggleMenu}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </motion.div>
+
+              {/* Contact and Social Links */}
+              <div className="mt-auto pb-12 flex flex-col items-center gap-8">
+                <a 
+                  href="tel:+918630049758" 
+                  className={`flex items-center gap-2 ${highlight} text-xl font-bold`}
+                >
+                  <i className="ri-phone-fill"></i>
+                  <span>+91 8630049758</span>
+                </a>
+
+                <div className="flex gap-6 text-2xl">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.icon}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${textColor} hover:${highlight} transition-colors`}
+                    >
+                      <i className={social.icon}></i>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,97 +1,713 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS CSS
+import { useState } from "react";
+import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 
 export default function ResumeSec() {
-    useEffect(() => {
-        // Initialize AOS animations
-        AOS.init({
-          duration: 500,  // Animation duration (in ms)
-          once: false,    // Animation will trigger every time the element comes into view
-          easing: "ease-in-out", // Animation easing
-          offset: 200,    // Offset for the trigger point (adjust as needed)
-          delay:200
-        });
-      }, []);
-    return (
-        <>
-            <div id="MyResume" className="resume_heading text-center mt-5">
-                <p data-aos="fade-up" data-aos-duration="800"><span className="bg-[#9626b3] text-white px-5 py-2 text-xl">Resume</span></p>
-                <p data-aos="fade-up" data-aos-duration="1200" className="text-4xl max-md:text-2xl max-md:px-3 font-bold text-gray-800 my-5">A summary of My Resume</p>
-            </div>
+  const { currentTheme } = useTheme();
+  const [activeTab, setActiveTab] = useState('experience');
+  const [hoveredItem, setHoveredItem] = useState(null);
+  const [expandedProject, setExpandedProject] = useState(null);
 
-            <div className="main-sec flex items-start justify-around gap-5 px-32 max-md:px-16 h-full my-10 max-md:flex-col">
-                {/* Education Section with AOS */}
-                <div
-                    data-aos="fade-right"
-                    data-aos-duration="1000"
-                    data-aos-delay="300"
-                    className="education-sec w-1/2 max-sm:w-full"
-                >
-                    <h1 className="text-3xl max-md:xl font-bold my-8" data-aos="fade-up">My Education</h1>
-                    <div className="edu-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-[#9626b3]">
-                        <h3 className="text-xl font-semibold" data-aos="fade-up">Diploma in Computer Science & Engineering</h3>
-                        <span className="font-semibold text-gray-700" data-aos="fade-up">Board of Technical Education Uttar Pradesh / 2021 - 2024</span>
-                        <p className="text-gray-500" data-aos="fade-up">My diploma in Computer Science & Engineering provided a strong foundation in software development and engineering fundamentals, with coursework in:</p>
-                        <ul className="text-gray-500">
-                            <li data-aos="fade-up"><span className="font-bold">Programming & Algorithms: </span><span>Mastery in programming languages and algorithmic problem-solving.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Data Structures: </span><span>Proficient in efficient data handling and manipulation.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Database Management: </span><span>Skilled in designing and querying databases.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Computer Networks: </span><span>Understanding of networking protocols and data communication.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Software Engineering: </span><span>Knowledge of development methodologies and version control.</span></li>
-                        </ul>
-                        <p className="text-gray-500" data-aos="fade-up">This diploma equipped me with the technical skills that complement my hands-on experience in HTML, CSS, JavaScript, Python, Django, and the MERN stack.</p>
-                        <hr className="my-3" />
-                        <h3 className="text-xl font-semibold" data-aos="fade-up">Matriculation (10th Grade) In Science Stream</h3>
-                        <span className="font-semibold text-gray-700" data-aos="fade-up">Uttar Pradesh Board / 2017 - 2019</span>
-                        <p className="text-gray-500" data-aos="fade-up">I completed my matriculation with a focus on building a strong foundation in science and mathematics. During this time, I developed key analytical and problem-solving skills, which have been essential in my journey toward a career in technology. My coursework emphasized:</p>
-                        <ul className="text-gray-500">
-                            <li data-aos="fade-up"><span className="font-bold">Mathematics:</span><span> Advanced problem-solving, logical reasoning, and critical thinking.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Science:</span><span>A comprehensive understanding of core scientific principles, fostering curiosity and analytical thinking.</span></li>
-                        </ul>
-                        <hr className="my-3" />
-                        <h3 className="text-xl font-semibold" data-aos="fade-up">Intermediate Education (12th Grade) In Science Stream</h3>
-                        <span className="font-semibold text-gray-700" data-aos="fade-up">Uttar Pradesh Board / 2019 - 2021</span>
-                        <p className="text-gray-500" data-aos="fade-up">In my intermediate studies, I focused on building a strong understanding of mathematics and science, which have been crucial in developing my analytical and problem-solving abilities. Key subjects included:</p>
-                        <ul className="text-gray-500">
-                            <li data-aos="fade-up"><span className="font-bold">Mathematics:</span><span> Advanced concepts in algebra, calculus, and trigonometry, strengthening my logical and critical thinking skills.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Physics and Chemistry:</span><span>A deep understanding of fundamental principles, fostering a scientific approach and analytical mindset.</span></li>
-                        </ul>
-                    </div>
-                </div>
+  // Tech icons for background
+  const techIcons = [
+    { icon: "</>", name: "html" },
+    { icon: "{ }", name: "code" },
+    { icon: "⚛️", name: "react" },
+    { icon: "λ", name: "lambda" },
+    { icon: ">_", name: "terminal" },
+    { icon: "() =>", name: "function" },
+    { icon: "npm", name: "npm" },
+    { icon: "git", name: "git" },
+    { icon: "db", name: "database" },
+    { icon: "API", name: "api" },
+    { icon: "CSS", name: "css" },
+    { icon: "JS", name: "javascript" },
+  ];
 
-                {/* Experience Section with AOS */}
-                <div
-                    data-aos="fade-left"
-                    data-aos-duration="1000"
-                    data-aos-delay="500"
-                    className="experience-sec w-1/2 max-sm:w-full"
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
+  const cardVariants = {
+    hover: {
+      y: -5,
+      scale: 1.02,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+  const educationData = [
+    {
+      title: "Diploma in Computer Science & Engineering",
+      period: "2021 - 2024",
+      institution: "Board of Technical Education Uttar Pradesh",
+      grade: "85%",
+      description: "Comprehensive training in software development fundamentals with hands-on projects.",
+      highlights: [
+        "Mastered data structures and algorithms through 50+ coding challenges",
+        "Built 3 full-stack projects using PHP and MySQL",
+        "Completed coursework in DBMS, OS, and Computer Networks",
+        "Maintained 85% aggregate score"
+      ],
+      icon: "🎓"
+    },
+    {
+      title: "Intermediate Education (12th Grade) Science",
+      period: "2019 - 2021",
+      institution: "Uttar Pradesh Board",
+      grade: "92%",
+      description: "Specialized in Mathematics and Computer Science.",
+      highlights: [
+        "Scored 92% in Computer Science",
+        "Developed first web project (School Management System)",
+        "Won district-level coding competition"
+      ],
+      icon: "📚"
+    }
+  ];
+
+  const experienceData = [
+    {
+      title: "Full Stack Developer (MERN)",
+      period: "January 2025 - Present",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "Current Role",
+      description: "Leading MERN stack development team for enterprise clients.",
+      highlights: [
+        "Architected 6+ production applications",
+        "Reduced API response time by 65%",
+        "Implemented CI/CD pipelines",
+        "Mentored junior developers",
+        "Introduced testing standards"
+      ],
+      projects: [
+        {
+          name: "HealthTrack Pro",
+          description: "Telemedicine platform with EHR management",
+          technologies: ["React", "Node.js", "MongoDB", "WebRTC"],
+          impact: "Reduced patient wait times by 40%",
+          features: ["Video consultations", "Medical records system", "Prescription generator"]
+        }
+      ],
+      icon: "💼",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "Web Developer",
+      period: "May 2024 - December 2024",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "7 months",
+      description: "Full stack development with focus on MERN stack applications.",
+      highlights: [
+        "Delivered 4 production-ready MERN projects",
+        "Implemented JWT authentication systems",
+        "Optimized React performance by 30%",
+        "Integrated payment gateways and mapping APIs"
+      ],
+      projects: [
+        {
+          name: "TaskFlow Pro",
+          description: "Project management tool with real-time collaboration",
+          technologies: ["MERN", "Socket.io", "React DnD"],
+          impact: "Adopted by 15+ small businesses",
+          features: ["Live task updates", "Gantt charts", "PDF reports"]
+        }
+      ],
+      icon: "🚀",
+      color: "from-blue-500 to-purple-500"
+    },
+    {
+      title: "Junior Developer",
+      period: "December 2023 - May 2024",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "6 months",
+      description: "Frontend development and feature implementation.",
+      highlights: [
+        "Built 10+ reusable React components",
+        "Fixed 50+ critical production bugs",
+        "Reduced CSS bundle size by 40%",
+        "Implemented responsive designs for 3 client projects"
+      ],
+      projects: [
+        {
+          name: "Portfolio Builder",
+          description: "Drag-and-drop portfolio website generator",
+          technologies: ["React", "Material UI", "Firebase"],
+          impact: "Used by 200+ freelancers",
+          features: ["Template customization", "PDF export", "Mobile-responsive"]
+        }
+      ],
+      icon: "⚡",
+      color: "from-green-500 to-blue-500"
+    },
+    {
+      title: "Summer Intern (Python/Django)",
+      period: "July 2023 - September 2023",
+      company: "Softpro India Computer Technologies",
+      location: "Lucknow",
+      status: "3 months",
+      description: "Intensive training in Python and Django web development.",
+      highlights: [
+        "Developed 3 Django applications with CRUD functionality",
+        "Built REST APIs with Django REST Framework",
+        "Optimized database queries reducing load time by 40%"
+      ],
+      projects: [
+        {
+          name: "Blog Management System",
+          description: "Full-featured blog platform with user authentication",
+          technologies: ["Python", "Django", "PostgreSQL", "Bootstrap"],
+          impact: "Used as training project for next batch",
+          features: ["Rich text editor", "User permissions", "Commenting system"]
+        }
+      ],
+      icon: "🌱",
+      color: "from-yellow-500 to-green-500"
+    }
+  ];
+
+  const skills = {
+    frontend: ["React", "JavaScript", "HTML/CSS", "Material UI", "Bootstrap"],
+    backend: ["Node.js", "Django", "Python", "PHP", "REST APIs"],
+    database: ["MongoDB", "PostgreSQL", "MySQL"],
+    tools: ["Git", "Docker", "CI/CD", "WebRTC", "Socket.io"]
+  };
+
+  return (
+    <section 
+      id="resume"
+      className={`${currentTheme.bgColor} min-h-screen py-20 px-4 sm:px-8 relative overflow-hidden`}
+    >
+      {/* Enhanced Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {/* Gradient blobs */}
+        <motion.div 
+          className={`absolute top-1/4 left-1/4 w-64 h-64 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.15, 0.1]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className={`absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
+        
+        {/* Binary code rain effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className={`absolute top-0 ${currentTheme.textColor} font-mono text-xs whitespace-nowrap`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`
+              }}
+              initial={{ y: -100 }}
+              animate={{ y: "100vh" }}
+              transition={{
+                duration: 10 + Math.random() * 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {Array.from({ length: 50 }).map((_, j) => (
+                <span key={j} className="opacity-70">
+                  {Math.random() > 0.5 ? "1" : "0"}
+                </span>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Floating tech icons */}
+        {techIcons.map((tech, i) => (
+          <motion.div
+            key={tech.name}
+            className={`absolute ${currentTheme.textColor} opacity-5 text-2xl md:text-4xl`}
+            style={{
+              top: `${10 + Math.random() * 80}%`,
+              left: `${5 + Math.random() * 90}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              rotate: Math.random() > 0.5 ? [0, 10, -10, 0] : [0, -10, 10, 0]
+            }}
+            transition={{
+              duration: 8 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          >
+            {tech.icon}
+          </motion.div>
+        ))}
+
+        {/* Circuit connection lines */}
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <motion.path
+            d="M50,100 Q150,50 250,100 T450,100"
+            fill="none"
+            stroke={currentTheme.textColor}
+            strokeWidth="1"
+            strokeOpacity="0.05"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 3 }}
+          />
+          <motion.path
+            d="M800,300 Q700,250 600,300 T400,300"
+            fill="none"
+            stroke={currentTheme.textColor}
+            strokeWidth="1"
+            strokeOpacity="0.05"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 3, delay: 0.5 }}
+          />
+        </svg>
+      </div>
+
+      <motion.div 
+        className="relative z-10"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        {/* Header Section */}
+        <motion.div className="text-center mb-16" variants={itemVariants}>
+          <motion.div 
+            className="inline-block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className={`${currentTheme.button} text-white px-8 py-3 text-lg font-medium rounded-full inline-block shadow-lg hover:shadow-xl transition-all duration-300`}>
+              📄 Resume Overview
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            className={`${currentTheme.textColor} text-4xl md:text-6xl font-bold mt-8 mb-4`}
+            variants={itemVariants}
+          >
+            Professional Journey
+          </motion.h2>
+          <motion.p 
+            className={`${currentTheme.highlight} text-xl max-w-2xl mx-auto`}
+            variants={itemVariants}
+          >
+            A comprehensive overview of my education and experience in full-stack development
+          </motion.p>
+
+          {/* Interactive Tab Navigation */}
+          <motion.div 
+            className="flex justify-center mt-12 mb-8"
+            variants={itemVariants}
+          >
+            <div className={`${currentTheme.card} rounded-full p-2`}>
+              {['experience', 'education', 'skills'].map((tab) => (
+                <motion.button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                    activeTab === tab
+                      ? `${currentTheme.button} text-white shadow-lg`
+                      : `${currentTheme.textColor} hover:bg-gray-700/50`
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                    <h1 className="text-3xl max-md:xl font-bold my-8" data-aos="fade-up">My Experience</h1>
-                    <div className="ex-wrapper grid grid-flow-row items-center justify-center gap-2 px-5 border-l-2 border-[#9626b3]">
-                        <h3 className="text-xl font-semibold" data-aos="fade-up">Jr. Developer</h3>
-                        <span className="font-semibold text-gray-700" data-aos="fade-up">DigiCoders Technologies Pvt Ltd Lucknow / Aug-2024 - Present</span>
-                        <p className="text-gray-500" data-aos="fade-up">In my role as an Associate Jr. Developer at Digicoders Technologies, I am responsible for developing and enhancing web applications with a focus on frontend technologies, particularly using React. My work involves:</p>
-                        <ul className="text-gray-500">
-                            <li data-aos="fade-up"><span className="font-bold">Developing Responsive Interfaces: </span><span>Creating user-friendly, responsive, and visually appealing interfaces using React, Tailwind CSS, Bootstrap, and Material UI.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Collaborative Development: </span><span>Working closely with team members to ensure efficient project workflows, leveraging Git and GitHub for version control and code management.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Optimization and Debugging: </span><span>Implementing best practices for performance optimization and debugging to deliver efficient and high-quality code.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Learning and Growth: </span><span>Actively expanding my skill set by collaborating on challenging projects, gaining hands-on experience, and refining my expertise in the MERN stack.</span></li>
-                        </ul>
-                        <hr className="my-3" />
-                        <h3 className="text-xl font-semibold" data-aos="fade-up">Summer Internship</h3>
-                        <span className="font-semibold text-gray-700" data-aos="fade-up">Softpro India Computer Technologies Pvt. Ltd., Lucknow, / July 2023 - September 2023</span>
-                        <p className="text-gray-500" data-aos="fade-up">During my summer internship at Softpro India, I gained practical experience in Python and Django, working on real-world web development projects. My role as a trainee allowed me to:</p>
-                        <ul className="text-gray-500">
-                            <li data-aos="fade-up"><span className="font-bold">Develop Web Applications: </span><span>Built dynamic web applications using Python and Django, focusing on backend functionality and database integration.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Implement RESTful APIs: </span><span>Worked on API development, connecting front-end interfaces with backend logic, enhancing my backend development skills.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Problem Solving and Debugging: </span><span>Identified and resolved issues within code, optimized application performance, and ensured a smooth user experience.</span></li>
-                            <li data-aos="fade-up"><span className="font-bold">Collaborate with Industry Mentors: </span><span>Received valuable guidance and feedback from experienced developers, helping me improve my coding practices and learn new technologies.</span></li>
-                        </ul>
-                        <p className="text-gray-500" data-aos="fade-up">This hands-on experience deepened my knowledge of web development and reinforced my interest in pursuing a career in software engineering. It provided a solid foundation in backend development and helped me understand the importance of clean, efficient code and best practices.</p>                       
-                    </div>
-                </div>
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)} 
+                  {tab === 'experience' && ' (4 Roles)'}
+                  {tab === 'education' && ' (2 Degrees)'}
+                  {tab === 'skills' && ' (15+ Technologies)'}
+                </motion.button>
+              ))}
             </div>
-        </>
-    );
+          </motion.div>
+        </motion.div>
+
+        {/* Content Area */}
+        <div className="max-w-7xl mx-auto">
+          {/* Experience Section */}
+          {activeTab === 'experience' && (
+            <motion.div className="space-y-8" variants={containerVariants}>
+              <div className="grid lg:grid-cols-2 gap-8">
+                {experienceData.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    className={`${currentTheme.card} p-8 rounded-2xl border ${currentTheme.bgColor === 'bg-black' ? 'border-gray-800' : 'border-gray-200'} transition-all duration-300`}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    variants={cardVariants}
+                    onMouseEnter={() => setHoveredItem(`exp-${index}`)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    {/* Card Header */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        <motion.div 
+                          className={`text-3xl bg-gradient-to-r ${exp.color} p-3 rounded-xl text-white shadow-lg`}
+                          animate={{
+                            rotate: hoveredItem === `exp-${index}` ? [0, 10, -10, 0] : 0
+                          }}
+                          transition={{
+                            duration: 1,
+                            repeat: hoveredItem === `exp-${index}` ? Infinity : 0
+                          }}
+                        >
+                          {exp.icon}
+                        </motion.div>
+                        <div>
+                          <h3 className={`${currentTheme.textColor} text-xl font-bold group-hover:text-purple-300 transition-colors`}>
+                            {exp.title}
+                          </h3>
+                          <p className={`${currentTheme.highlight} font-semibold`}>{exp.company}</p>
+                          <p className="text-gray-400 text-sm">{exp.location} • {exp.period}</p>
+                        </div>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        exp.status.includes('Current') 
+                          ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                          : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                      }`}>
+                        {exp.status}
+                      </span>
+                    </div>
+
+                    <p className={`${currentTheme.textColor} opacity-90 mb-6`}>{exp.description}</p>
+
+                    {/* Achievements with Icons */}
+                    <div className="mb-6">
+                      <h4 className={`${currentTheme.textColor} font-semibold mb-3 flex items-center`}>
+                        <motion.span
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            repeatType: "mirror"
+                          }}
+                        >
+                          🏆
+                        </motion.span>
+                        <span className="ml-2">Key Achievements</span>
+                      </h4>
+                      <div className="space-y-2">
+                        {exp.highlights.slice(0, 3).map((highlight, i) => (
+                          <motion.div 
+                            key={i} 
+                            className="flex items-start space-x-3 group/item"
+                            whileHover={{ x: 5 }}
+                          >
+                            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 group-hover/item:scale-150 transition-transform"></div>
+                            <p className={`${currentTheme.textColor} opacity-90 group-hover/item:opacity-100 transition-opacity`}>
+                              {highlight}
+                            </p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Projects */}
+                    <div>
+                      <h4 className={`${currentTheme.textColor} font-semibold mb-3 flex items-center`}>
+                        <motion.span
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity
+                          }}
+                        >
+                          🚀
+                        </motion.span>
+                        <span className="ml-2">Featured Project</span>
+                      </h4>
+                      {exp.projects.map((project, pIndex) => (
+                        <motion.div
+                          key={pIndex}
+                          className={`${currentTheme.card} p-4 rounded-xl transition-all duration-300`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                        >
+                          <div className="flex justify-between items-start mb-3">
+                            <h5 className={`font-bold ${currentTheme.specialText} text-lg`}>{project.name}</h5>
+                            <motion.button
+                              onClick={() => setExpandedProject(expandedProject === `${index}-${pIndex}` ? null : `${index}-${pIndex}`)}
+                              className={`${currentTheme.highlight} transition-colors`}
+                              whileHover={{ scale: 1.2 }}
+                              whileTap={{ scale: 0.9 }}
+                            >
+                              {expandedProject === `${index}-${pIndex}` ? '🔼' : '🔽'}
+                            </motion.button>
+                          </div>
+                          
+                          <p className="text-gray-300 text-sm mb-3">{project.description}</p>
+                          
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            {project.technologies.map((tech, tIndex) => (
+                              <motion.span 
+                                key={tIndex} 
+                                className={`text-xs px-3 py-1 rounded-full ${currentTheme.card} ${currentTheme.specialText} transition-colors`}
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                {tech}
+                              </motion.span>
+                            ))}
+                          </div>
+                          
+                          {expandedProject === `${index}-${pIndex}` && (
+                            <motion.div 
+                              className="mt-4 space-y-2"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="flex items-center space-x-2">
+                                <span className="text-green-400">📈</span>
+                                <p className="text-sm font-semibold text-green-300">
+                                  Impact: {project.impact}
+                                </p>
+                              </div>
+                              <div>
+                                <p className="text-sm text-gray-300 mb-2">Key Features:</p>
+                                <div className="flex flex-wrap gap-2">
+                                  {project.features.map((feature, fIndex) => (
+                                    <motion.span 
+                                      key={fIndex} 
+                                      className="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded"
+                                      initial={{ scale: 0.8 }}
+                                      animate={{ scale: 1 }}
+                                      transition={{ delay: fIndex * 0.05 }}
+                                    >
+                                      {feature}
+                                    </motion.span>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Education Section */}
+          {activeTab === 'education' && (
+            <motion.div 
+              className="max-w-4xl mx-auto"
+              variants={containerVariants}
+            >
+              <div className="space-y-8">
+                {educationData.map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    className={`${currentTheme.card} p-8 rounded-2xl border ${currentTheme.bgColor === 'bg-black' ? 'border-gray-800' : 'border-gray-200'} transition-all duration-300`}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    variants={cardVariants}
+                  >
+                    <div className="flex items-start space-x-6">
+                      <motion.div 
+                        className={`text-4xl bg-gradient-to-r ${currentTheme.accent} p-4 rounded-xl shadow-lg`}
+                        animate={{
+                          y: [0, -5, 0],
+                          transition: {
+                            duration: 3,
+                            repeat: Infinity
+                          }
+                        }}
+                      >
+                        {edu.icon}
+                      </motion.div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <h3 className={`${currentTheme.textColor} text-2xl font-bold mb-2`}>{edu.title}</h3>
+                            <p className={`${currentTheme.highlight} font-semibold text-lg`}>{edu.institution}</p>
+                            <p className="text-gray-400">{edu.period}</p>
+                          </div>
+                          <div className="text-right">
+                            <motion.div 
+                              className={`bg-gradient-to-r ${currentTheme.accent} text-white px-4 py-2 rounded-full font-bold text-lg`}
+                              whileHover={{ scale: 1.05 }}
+                            >
+                              {edu.grade}
+                            </motion.div>
+                            <p className="text-sm text-gray-400 mt-1">Grade</p>
+                          </div>
+                        </div>
+                        
+                        <p className={`${currentTheme.textColor} opacity-90 mb-6`}>{edu.description}</p>
+                        
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {edu.highlights.map((highlight, i) => (
+                            <motion.div 
+                              key={i} 
+                              className="flex items-start space-x-3 group"
+                              whileHover={{ x: 5 }}
+                            >
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${currentTheme.accent} mt-2 group-hover:scale-150 transition-transform`}></div>
+                              <p className={`${currentTheme.textColor} opacity-90 group-hover:opacity-100 transition-opacity`}>
+                                {highlight}
+                              </p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Skills Section */}
+          {activeTab === 'skills' && (
+            <motion.div 
+              className="max-w-6xl mx-auto"
+              variants={containerVariants}
+            >
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {Object.entries(skills).map(([category, skillList]) => (
+                  <motion.div 
+                    key={category} 
+                    className={`${currentTheme.card} p-6 rounded-2xl border ${currentTheme.bgColor === 'bg-black' ? 'border-gray-800' : 'border-gray-200'} transition-all duration-300`}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    variants={cardVariants}
+                  >
+                    <h3 className={`${currentTheme.textColor} text-xl font-bold mb-4 capitalize flex items-center`}>
+                      {category === 'frontend' && (
+                        <motion.span
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity
+                          }}
+                        >
+                          🎨
+                        </motion.span>
+                      )}
+                      {category === 'backend' && '⚙️'}
+                      {category === 'database' && '🗄️'}
+                      {category === 'tools' && '🛠️'}
+                      <span className="ml-2">{category.replace('frontend', 'Frontend').replace('backend', 'Backend').replace('database', 'Database').replace('tools', 'Tools')}</span>
+                    </h3>
+                    <div className="space-y-3">
+                      {skillList.map((skill, index) => (
+                        <motion.div 
+                          key={index} 
+                          className="flex items-center justify-between group"
+                          whileHover={{ x: 5 }}
+                        >
+                          <span className={`${currentTheme.textColor} group-hover:text-purple-300 transition-colors`}>{skill}</span>
+                          <motion.div 
+                            className={`w-3 h-3 rounded-full bg-gradient-to-r ${currentTheme.accent}`}
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0.7, 1, 0.7]
+                            }}
+                            transition={{
+                              duration: 2 + index * 0.3,
+                              repeat: Infinity
+                            }}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Call to Action */}
+        <motion.div 
+          className="text-center mt-16"
+          variants={itemVariants}
+        >
+          <div className="inline-flex items-center space-x-4">
+            <motion.button 
+              className={`${currentTheme.button} text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.span
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity
+                }}
+              >
+                📧
+              </motion.span>
+              <span>Get in Touch</span>
+            </motion.button>
+            <motion.button 
+              className={`border-2 border-purple-500 ${currentTheme.specialText} px-8 py-4 rounded-full font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center space-x-2`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.span
+                animate={{ y: [0, -5, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity
+                }}
+              >
+                📄
+              </motion.span>
+              <span>Download Resume</span>
+            </motion.button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
 }

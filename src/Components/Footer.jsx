@@ -1,252 +1,293 @@
 import { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import AOS styles
+import { useTheme } from '../context/ThemeContext'; // Adjust import path as needed
+import { motion } from 'framer-motion';
+import { 
+  FiMail, FiPhone, FiMapPin, 
+  FiTwitter, FiFacebook, FiInstagram, 
+  FiGithub, FiDribbble 
+} from 'react-icons/fi';
+import { FaLinkedin } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
-const Footer = () => {
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
+const Footer = () => {
+  const { currentTheme } = useTheme();
+  
   useEffect(() => {
-    // Initialize AOS animations on page load
     AOS.init({
-      duration: 1000,
-      once: false,           
-      easing: "ease-in-out", 
-      offset: 200, 
+      duration: 800,
+      once: true,
+      easing: "ease-in-out",
+      offset: 100,
     });
   }, []);
 
-  const [formData, setFormData] = useState({
-    email: ''
-  });
+  const [formData, setFormData] = useState({ email: '' });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const submitEventHandler = (e) => {
+  const submitEventHandler = async (e) => {
     e.preventDefault();
+    if (!formData.email) {
+      setErrorMessage('Please enter your email');
+      return;
+    }
+
     setLoading(true);
     setSuccessMessage('');
     setErrorMessage('');
-    const templateParams = {
-      email: formData.subscriberEmail,
-      to_name: 'Prabhakar Rajput',
-    };
-    emailjs
-      .send('service_e4fxwkb', 'template_eqjdq4n', templateParams, 'PBRLIR32x6QxbKOTz')
-      .then(
-        (result) => {
-          setLoading(false);
-          setSuccessMessage('Your message has been sent successfully!');
+
+    try {
+      await emailjs.send(
+        'service_e4fxwkb',
+        'template_eqjdq4n',
+        {
+          email: formData.email,
+          to_name: 'Prabhakar Rajput',
         },
-        (error) => {
-          setLoading(false);
-          setErrorMessage('Oops! Something went wrong. Please try again later.');
-        }
+        'PBRLIR32x6QxbKOTz'
       );
+      setSuccessMessage('Subscribed successfully!');
+      setFormData({ email: '' });
+    } catch (error) {
+      setErrorMessage('Subscription failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren"
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
+  const buttonVariants = {
+    rest: { scale: 1 },
+    hover: { 
+      scale: 1.05,
+      backgroundColor: currentTheme.button.includes('bg-') ? 
+        currentTheme.button.split(' ')[0].replace('bg-', '') : 'var(--primary)'
+    },
+    tap: { scale: 0.98 }
+  };
+
+  const socialLinks = [
+    { icon: <FiTwitter />, url: "https://x.com/codingworld434", color: "hover:text-blue-400" },
+    { icon: <FiFacebook />, url: "https://www.facebook.com/profile.php?id=100057055627269", color: "hover:text-blue-600" },
+    { icon: <FiInstagram />, url: "https://www.instagram.com/coding_lover_boy_2.0", color: "hover:text-pink-500" },
+    { icon: <FiGithub />, url: "https://github.com/Prabha-Raj", color: "hover:text-gray-300" },
+    { icon: <FiDribbble />, url: "https://dribbble.com", color: "hover:text-pink-400" },
+    { icon: <FaLinkedin />, url: "https://linkedin.com", color: "hover:text-blue-500" }
+  ];
+
+  const quickLinks = [
+    { name: "Home", href: "#Home" },
+    { name: "About Me", href: "#AboutMe" },
+    { name: "What I Do", href: "#WhatIDo" },
+    { name: "My Resume", href: "#MyResume" },
+    { name: "Portfolio", href: "#Portfolio" },
+    { name: "Contact Me", href: "#ContactMe" }
+  ];
 
   return (
-    <div className='bg-black '>
-        <div className="footer h-auto w-full bg-black text-white flex items-center justify-around py-8 px-4 max-sm:flex-col max-sm:gap-6 max-sm:px-2">
-      <div className="footer-content flex gap-12 max-sm:flex-col max-sm:items-center max-sm:text-center">
-        {/* Left Section */}
-
- {/* Contact Information */}
- <div data-aos="fade-up" className='flex flex-col items-center gap-5 justify-around'>
-        <div
-          className="contact-info text-center mt-6">
-          <h2 className="font-semibold text-yellow-400 mb-4 text-xl">Contact Info</h2>
-          <p className="mb-2">
-            <span className="font-bold">Phone:</span> +91 8640049758
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Email:</span>{" "}
-            <a href="mailto:prabhakarrajput78824@gmail.com" className="text-yellow-500 underline">
-              prabhakarrajput78824@gmail.com
-            </a>
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Location:</span> Lucknow, Uttar Pradesh, India
-          </p>
-          
-        </div>
-
-         {/* Right Section - Social Links */}
-         <div
-          className="social-links text-center"
-        >
-          <h2 className="font-semibold mb-4 text-yellow-400 text-xl">Follow Me</h2>
-          <div className="flex justify-center gap-6 text-2xl">
-            <a
-              href="https://x.com/codingworld434?t=-hK2IC1TGFqW--EusfmpYg&s=09"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-500 transition duration-300"
-            >
-              <i className="ri-twitter-fill"></i>
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=100057055627269&mibextid=JRoKGi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 transition duration-300"
-            >
-              <i className="ri-facebook-circle-fill"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/coding_lover_boy_2.0/profilecard/?igsh=aDl1M2hqenM5cTFx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-500 transition duration-300"
-            >
-              <i className="ri-instagram-line"></i>
-            </a>
-            <a
-              href="https://github.com/Prabha-Raj"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-gray-800 transition duration-300"
-            >
-              <i className="ri-github-fill"></i>
-            </a>
-            <a
-              href="https://dribbble.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pink-400 transition duration-300"
-            >
-              <i className="ri-dribbble-fill"></i>
-            </a>
-          </div>
-        </div>
-</div>
-
-</div>
-
-        {/* Middle Section - Quick Links */}
-        <div
-          className="quick-links text-center max-sm:mb-6"
-          data-aos="fade-up"
-        >
-          <h2 className="font-semibold mb-4 text-yellow-400  text-xl">
-            Quick Links
-          </h2>
-          <ul className="text-lg font-medium">
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#Home">Home</a>
-            </li>
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#AboutMe">About Me</a>
-            </li>
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#WhatIDo">What I Do</a>
-            </li>
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#MyResume">My Resume</a>
-            </li>
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#Portfolio">Portfolio</a>
-            </li>
-            <li className="hover:text-yellow-400 transition duration-300">
-              <a href="#ContactMe">Contact Me</a>
-            </li>
-          </ul>
-        </div>
-
-       
-
-      {/* Additional Sections */}
-      <div className="additional-sections flex flex-col items-center max-sm:gap-4">
-        {/* Newsletter Signup */}
-        <div
-          className="newsletter text-center"
-          data-aos="fade-up"
-        >
-          <form action="" onSubmit={submitEventHandler}>
-          <h2 className="font-semibold text-yellow-400 mb-4 text-xl">Subscribe to Newsletter</h2>
-          <div className='flex items-center justify-center gap-2'>
-          <input
-            type="email"
-            name='subscriberEmail'
-            value={formData.subscriberEmail}
-            onChange={handleInputChange}
-            placeholder="Your email address"
-            className="p-2 bg-transparent border-2 border-white text-white placeholder-gray-300 rounded-md"
-          />
-          <button
-            type="submit"
-            style={{ margin: '0 auto' }}
-            className="w-[200px] bg-yellow-400 hover:text-black  text-black text-xl font-bold py-3 hover:bg-white transition-colors"
-            disabled={loading}
-            data-aos="zoom-in"
-            data-aos-delay="400"
+    <footer className={`${currentTheme.bgColor} ${currentTheme.textColor} pt-16 pb-8`}>
+      <motion.div 
+        className="container mx-auto px-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerVariants}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Contact Info */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center md:items-start"
+            data-aos="fade-up"
           >
-            {loading ? 'Sending...' : 'Subscibe'}
-          </button>
-        </div>
-        </form>
-          {successMessage && <p className="text-green-500 mt-4" data-aos="fade-in" data-aos-delay="500">{successMessage}</p>}
-          {errorMessage && <p className="text-red-500 mt-4" data-aos="fade-in" data-aos-delay="500">{errorMessage}</p>}
+            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Contact Info</h3>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+                  <FiPhone className="text-white" />
+                </div>
+                <a href="tel:+918640049758" className="hover:underline">+91 8640049758</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+                  <FiMail className="text-white" />
+                </div>
+                <a href="mailto:prabhakarrajput78824@gmail.com" className="hover:underline">
+                  prabhakarrajput78824@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+                  <FiMapPin className="text-white" />
+                </div>
+                <span>Lucknow, Uttar Pradesh, India</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Quick Links</h3>
+            <ul className="space-y-3 text-center md:text-left">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.href} 
+                    className={`hover:${currentTheme.highlight} transition-colors`}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center md:items-start"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Follow Me</h3>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  className={`p-3 rounded-full ${currentTheme.card} text-xl ${currentTheme.textColor} ${social.color} transition-colors`}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Newsletter */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center md:items-start"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Newsletter</h3>
+            <form onSubmit={submitEventHandler} className="w-full">
+              <div className="flex flex-col gap-4">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Your email address"
+                  className={`w-full p-3 rounded-lg ${currentTheme.card} border ${currentTheme.card.includes('border') ? '' : 'border-opacity-20'} focus:outline-none focus:ring-2 ${currentTheme.button.replace('bg-', 'ring-')}`}
+                  required
+                />
+                <motion.button
+                  type="submit"
+                  variants={buttonVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
+                  className={`py-3 px-6 rounded-lg font-bold ${currentTheme.button} ${currentTheme.textColor.includes('text-white') ? 'text-white' : 'text-gray-900'}`}
+                  disabled={loading}
+                >
+                  {loading ? 'Subscribing...' : 'Subscribe'}
+                </motion.button>
+              </div>
+              {successMessage && (
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="mt-3 text-green-500"
+                >
+                  {successMessage}
+                </motion.p>
+              )}
+              {errorMessage && (
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="mt-3 text-red-500"
+                >
+                  {errorMessage}
+                </motion.p>
+              )}
+            </form>
+          </motion.div>
         </div>
 
-               {/* Privacy Policy & Terms */}
-        <div
-          className="legal-links text-center mt-6"
-          // data-aos="zoom-in"
+        {/* Copyright */}
+        <motion.div 
+          className="mt-16 pt-8 border-t border-opacity-20 flex flex-col md:flex-row justify-between items-center gap-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
         >
-          <ul className="text-2xl font-medium text-gray-400">
-            <li>
-              <a href="/privacy-policy" className="hover:text-yellow-400 transition duration-300">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="/terms-of-service" className="hover:text-yellow-400 transition duration-300">
-                Terms of Service
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      
-    </div>
-
-    <div
-          className="bg-black flex max-sm:flex-col max-sm:justify-center max-sm:gap-5 text-center  items-center justify-around text-white   max-sm:mb-6 mt-5 py-5"
-          // data-aos="fade-up"
-        >
-          <p className="font-semibold mb-2 ">
-            Copyright © 2023{" "}
-            <a
-              href=""
-              className="text-yellow-500 underline hover:text-yellow-300 transition duration-300"
-            >
-              Prabhakar
-            </a>
-            . All Rights Reserved.
-          </p>
-          
-          <p className="font-semibold">
-            Designed By{" "}
-            <a
-              href=""
-              className="text-yellow-500 underline hover:text-yellow-300 transition duration-300"
+          <p>
+            Copyright © {new Date().getFullYear()}{" "}
+            <a 
+              href="#" 
+              className={`${currentTheme.highlight} hover:underline`}
             >
               Prabhakar Rajput
-            </a>
+            </a>. All Rights Reserved.
           </p>
-        </div>
-    </div>
-
+          <div className="flex gap-6">
+            <a 
+              href="/privacy-policy" 
+              className={`hover:${currentTheme.highlight} transition-colors`}
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href="/terms-of-service" 
+              className={`hover:${currentTheme.highlight} transition-colors`}
+            >
+              Terms of Service
+            </a>
+          </div>
+        </motion.div>
+      </motion.div>
+    </footer>
   );
 };
 
