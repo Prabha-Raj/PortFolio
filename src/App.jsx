@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 import React, { useState } from "react";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import WhatIDoSec from "./Components/WhatIDoSec";
+import ProjectSec from "./Components/ProjectSec";
 
 // Theme Switcher Component
 const ThemeSwitcher = () => {
@@ -67,7 +68,8 @@ export default function App() {
       <AboutSec />
       <WhatIDoSec />
       <ResumeSec />
-      <SkillsSec />
+      {/* <SkillsSec /> */}
+      <ProjectSec/>
       <HireMeSec />
       <FAQsSec />
       <ReviewSec />

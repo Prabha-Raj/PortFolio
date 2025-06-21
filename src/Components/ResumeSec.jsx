@@ -88,108 +88,137 @@ export default function ResumeSec() {
     }
   ];
 
-  const experienceData = [
-    {
-      title: "Full Stack Developer (MERN)",
-      period: "January 2025 - Present",
-      company: "DigiCoders Technologies",
-      location: "Lucknow",
-      status: "Current Role",
-      description: "Leading MERN stack development team for enterprise clients.",
-      highlights: [
-        "Architected 6+ production applications",
-        "Reduced API response time by 65%",
-        "Implemented CI/CD pipelines",
-        "Mentored junior developers",
-        "Introduced testing standards"
-      ],
-      projects: [
-        {
-          name: "HealthTrack Pro",
-          description: "Telemedicine platform with EHR management",
-          technologies: ["React", "Node.js", "MongoDB", "WebRTC"],
-          impact: "Reduced patient wait times by 40%",
-          features: ["Video consultations", "Medical records system", "Prescription generator"]
-        }
-      ],
-      icon: "💼",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "Web Developer",
-      period: "May 2024 - December 2024",
-      company: "DigiCoders Technologies",
-      location: "Lucknow",
-      status: "7 months",
-      description: "Full stack development with focus on MERN stack applications.",
-      highlights: [
-        "Delivered 4 production-ready MERN projects",
-        "Implemented JWT authentication systems",
-        "Optimized React performance by 30%",
-        "Integrated payment gateways and mapping APIs"
-      ],
-      projects: [
-        {
-          name: "TaskFlow Pro",
-          description: "Project management tool with real-time collaboration",
-          technologies: ["MERN", "Socket.io", "React DnD"],
-          impact: "Adopted by 15+ small businesses",
-          features: ["Live task updates", "Gantt charts", "PDF reports"]
-        }
-      ],
-      icon: "🚀",
-      color: "from-blue-500 to-purple-500"
-    },
-    {
-      title: "Junior Developer",
-      period: "December 2023 - May 2024",
-      company: "DigiCoders Technologies",
-      location: "Lucknow",
-      status: "6 months",
-      description: "Frontend development and feature implementation.",
-      highlights: [
-        "Built 10+ reusable React components",
-        "Fixed 50+ critical production bugs",
-        "Reduced CSS bundle size by 40%",
-        "Implemented responsive designs for 3 client projects"
-      ],
-      projects: [
-        {
-          name: "Portfolio Builder",
-          description: "Drag-and-drop portfolio website generator",
-          technologies: ["React", "Material UI", "Firebase"],
-          impact: "Used by 200+ freelancers",
-          features: ["Template customization", "PDF export", "Mobile-responsive"]
-        }
-      ],
-      icon: "⚡",
-      color: "from-green-500 to-blue-500"
-    },
-    {
-      title: "Summer Intern (Python/Django)",
-      period: "July 2023 - September 2023",
-      company: "Softpro India Computer Technologies",
-      location: "Lucknow",
-      status: "3 months",
-      description: "Intensive training in Python and Django web development.",
-      highlights: [
-        "Developed 3 Django applications with CRUD functionality",
-        "Built REST APIs with Django REST Framework",
-        "Optimized database queries reducing load time by 40%"
-      ],
-      projects: [
-        {
-          name: "Blog Management System",
-          description: "Full-featured blog platform with user authentication",
-          technologies: ["Python", "Django", "PostgreSQL", "Bootstrap"],
-          impact: "Used as training project for next batch",
-          features: ["Rich text editor", "User permissions", "Commenting system"]
-        }
-      ],
-      icon: "🌱",
-      color: "from-yellow-500 to-green-500"
-    }
-  ];
+const experienceData = [
+  {
+    title: "Full Stack Developer (MERN)",
+    period: "January 2025 - Present",
+    company: "DigiCoders Technologies",
+    location: "Lucknow",
+    status: "Current Role",
+    description: "Leading MERN stack development team for enterprise clients.",
+    highlights: [
+      "Architected 6+ production applications",
+      "Reduced API response time by 65%",
+      "Authentication & Autherization",
+      "Mentored junior developers",
+      "Introduced testing standards"
+    ],
+    projects: [
+      {
+        name: "Tech Connect",
+        description: "Video conferencing app with role-based access and admin tracking",
+        technologies: ["React", "Node.js", "MongoDB", "JWT", "Jitsi SDK"],
+        impact: "Enables secure, scheduled classes and meetings with full participant tracking",
+        features: ["Course-based access", "Student/Admin dashboards", "Join/Leave tracking"]
+      },
+      {
+        name: "OnePoint Store",
+        description: "Electronics service portal for repairs & installations",
+        technologies: ["React", "Flask", "Bootstrap"],
+        impact: "Streamlined service booking process for 100+ users",
+        features: ["Booking management", "Technician dashboard", "Responsive design"]
+      }
+    ],
+    icon: "💼",
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    title: "Web Developer",
+    period: "May 2024 - December 2024",
+    company: "DigiCoders Technologies",
+    location: "Lucknow",
+    status: "7 months",
+    description: "Full stack development with focus on MERN stack applications.",
+    highlights: [
+      "Delivered 4 production-ready MERN projects",
+      "Implemented JWT authentication systems",
+      "Optimized React performance by 30%",
+      "Integrated payment gateways and mapping APIs"
+    ],
+    projects: [
+      {
+        name: "My Job Market",
+        description: "A job portal with role-based user and admin panels",
+        technologies: ["React", "Node.js", "MongoDB", "JWT", "Tailwind"],
+        impact: "Live job platform for employers and job seekers",
+        features: ["Job listing/posting", "User authentication", "Admin control"]
+      },
+      {
+        name: "Taxi Teaching Platform",
+        description: "Learning management app with tests and video content",
+        technologies: ["React", "MongoDB", "Express", "JWT"],
+        impact: "Adopted by coaching center for online taxi exam prep",
+        features: ["Quizzes", "Video library", "Multi-dashboard support"]
+      }
+    ],
+    icon: "🚀",
+    color: "from-blue-500 to-purple-500"
+  },
+  {
+    title: "Junior Developer",
+    period: "December 2023 - May 2024",
+    company: "DigiCoders Technologies",
+    location: "Lucknow",
+    status: "6 months",
+    description: "Frontend development and feature implementation.",
+    highlights: [
+      "Built 10+ reusable React components",
+      "Fixed 50+ critical production bugs",
+      "Reduced CSS bundle size by 40%",
+      "Implemented responsive designs for 3 client projects"
+    ],
+    projects: [
+      {
+        name: "Varanasi Ayodhya Tour Site",
+        description: "Tour booking site for a religious tourism company",
+        technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+        impact: "Helped increase tourist inquiries via online platform",
+        features: ["Contact forms", "Responsive sections", "Gallery"]
+      },
+      {
+        name: "SSF Berries Website",
+        description: "Business site for a fruit company",
+        technologies: ["HTML", "CSS", "JS"],
+        impact: "Enhanced brand visibility and trust online",
+        features: ["Landing page", "About/Contact", "Mobile-friendly"]
+      }
+    ],
+    icon: "⚡",
+    color: "from-green-500 to-blue-500"
+  },
+  {
+    title: "Summer Intern (Python/Django)",
+    period: "July 2023 - September 2023",
+    company: "Softpro India Computer Technologies",
+    location: "Lucknow",
+    status: "3 months",
+    description: "Intensive training in Python and Django web development.",
+    highlights: [
+      "Developed 3 Django applications with CRUD functionality",
+      "Built REST APIs with Django REST Framework",
+      "Optimized database queries reducing load time by 40%"
+    ],
+    projects: [
+      {
+        name: "ErrorQuiz App",
+        description: "Quiz app with certificate generation for test takers",
+        technologies: ["React", "Node.js", "MongoDB", "jsPDF"],
+        impact: "Helped 100+ learners self-assess and receive auto-certificates",
+        features: ["Quiz selection", "Score result", "jsPDF certificate download"]
+      },
+      {
+        name: "Blog Management System",
+        description: "Blog platform with admin authentication and user features",
+        technologies: ["Django", "PostgreSQL", "Bootstrap"],
+        impact: "Used internally for Django training and demos",
+        features: ["User auth", "Comment system", "Post categories"]
+      }
+    ],
+    icon: "🌱",
+    color: "from-yellow-500 to-green-500"
+  }
+];
+
 
   const skills = {
     frontend: ["React", "JavaScript", "HTML/CSS", "Material UI", "Bootstrap"],
@@ -200,7 +229,7 @@ export default function ResumeSec() {
 
   return (
     <section 
-      id="resume"
+      id="MyResume"
       className={`${currentTheme.bgColor} min-h-screen py-20 px-4 sm:px-8 relative overflow-hidden`}
     >
       {/* Enhanced Animated Background Elements */}
@@ -372,7 +401,7 @@ export default function ResumeSec() {
         <div className="max-w-7xl mx-auto">
           {/* Experience Section */}
           {activeTab === 'experience' && (
-            <motion.div className="space-y-8" variants={containerVariants}>
+            <motion.div className="space-y-10" variants={containerVariants}>
               <div className="grid lg:grid-cols-2 gap-8">
                 {experienceData.map((exp, index) => (
                   <motion.div

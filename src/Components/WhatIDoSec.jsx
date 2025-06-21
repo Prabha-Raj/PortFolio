@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 const cardsData = [
   {
@@ -89,16 +90,9 @@ export default function WhatIDoSec() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [floatingElements, setFloatingElements] = useState([]);
   const sectionRef = useRef(null);
-
-  // Current theme configuration
-  const currentTheme = {
-    bgColor: "bg-gradient-to-br from-gray-900 via-black to-gray-800",
-    textColor: "text-white",
-    specialText: "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600",
-    button: "bg-gradient-to-r from-blue-500 to-purple-600",
-    card: "bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50",
-    highlight: "bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30"
-  };
+  
+  // Get theme from context
+  const { currentTheme } = useTheme();
 
   // Generate floating elements
   useEffect(() => {
@@ -136,7 +130,6 @@ export default function WhatIDoSec() {
     }
   }, []);
 
-  // Floating particles component
   const FloatingParticle = ({ element, index }) => {
     const [position, setPosition] = useState({ x: element.x, y: element.y });
 
@@ -168,7 +161,6 @@ export default function WhatIDoSec() {
     );
   };
 
-  // Particle explosion effect
   const createParticleExplosion = (cardIndex) => {
     const card = cardsData[cardIndex];
     return card.particles.map((particle, index) => (
@@ -187,7 +179,6 @@ export default function WhatIDoSec() {
     ));
   };
 
-  // Interactive connection lines
   const ConnectionLines = () => (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
       <defs>
@@ -247,11 +238,10 @@ export default function WhatIDoSec() {
       <section
         ref={sectionRef}
         id="WhatIDo"
-        className={`${currentTheme.bgColor} py-20 px-4 sm:px-8 relative overflow-hidden min-h-screen`}
+        className={`${currentTheme.bgColor} ${currentTheme.textColor} py-20 px-4 sm:px-8 relative overflow-hidden min-h-screen`}
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          {/* Floating particles */}
           {floatingElements.map((element, index) => (
             <FloatingParticle key={element.id} element={element} index={index} />
           ))}
@@ -277,7 +267,6 @@ export default function WhatIDoSec() {
             ))}
           </div>
 
-          {/* Connection lines */}
           <ConnectionLines />
 
           {/* Gradient orbs */}
@@ -289,7 +278,6 @@ export default function WhatIDoSec() {
         {/* Section Header */}
         <div className="text-center mb-16 relative z-10">
           <div className="relative inline-block">
-            {/* Animated rings around the badge */}
             <div className="absolute inset-0 rounded-full border-2 border-blue-500/30 animate-spin" style={{ animation: 'pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite' }}></div>
             <div className="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-spin" style={{ animation: 'pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite', animationDelay: '1s' }}></div>
             
@@ -300,7 +288,7 @@ export default function WhatIDoSec() {
             </span>
           </div>
           
-          <h2 className={`${currentTheme.textColor} text-4xl md:text-6xl font-bold mt-8 mb-6 relative`}>
+          <h2 className="text-4xl md:text-6xl font-bold mt-8 mb-6 relative">
             How I can help with your 
             <span className={`${currentTheme.specialText} block relative`}>
               next big project
@@ -308,7 +296,7 @@ export default function WhatIDoSec() {
             </span>
           </h2>
 
-          <p className={`${currentTheme.textColor} opacity-80 text-xl max-w-3xl mx-auto leading-relaxed`}>
+          <p className="opacity-80 text-xl max-w-3xl mx-auto leading-relaxed">
             Leveraging cutting-edge technologies and modern development practices to build 
             <span className="text-blue-400 font-semibold"> scalable</span>, 
             <span className="text-purple-400 font-semibold"> high-performance</span> solutions
@@ -328,14 +316,12 @@ export default function WhatIDoSec() {
                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
               }}
             >
-              {/* Particle explosion on hover */}
               {hoveredCard === index && (
                 <div className="absolute inset-0 pointer-events-none">
                   {createParticleExplosion(index)}
                 </div>
               )}
 
-              {/* Animated Background Gradient */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-2xl transition-all duration-500`}
                 style={{
@@ -344,7 +330,6 @@ export default function WhatIDoSec() {
                 }}
               />
 
-              {/* Glowing border effect */}
               <div
                 className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500"
                 style={{
@@ -354,7 +339,6 @@ export default function WhatIDoSec() {
                 }}
               />
 
-              {/* Icon with advanced animation */}
               <div className={`${currentTheme.highlight} rounded-2xl p-4 relative z-10 transition-all duration-500 group-hover:scale-110`}>
                 <div
                   className="text-4xl transition-all duration-500"
@@ -366,7 +350,6 @@ export default function WhatIDoSec() {
                   {card.icon}
                 </div>
                 
-                {/* Pulse rings around icon */}
                 {hoveredCard === index && (
                   <>
                     <div className="absolute inset-0 rounded-2xl border-2 border-blue-500/50 animate-ping"></div>
@@ -375,24 +358,21 @@ export default function WhatIDoSec() {
                 )}
               </div>
 
-              {/* Content */}
               <div className="relative z-10 flex-grow">
-                <h3 className={`${currentTheme.textColor} text-xl font-bold mb-3 transition-all duration-300 group-hover:text-blue-400`}>
+                <h3 className="text-xl font-bold mb-3 transition-all duration-300 group-hover:text-blue-400">
                   {card.heading}
                 </h3>
                 
-                <p className={`${currentTheme.textColor} opacity-90 leading-relaxed mb-4 transition-all duration-300`}>
+                <p className="opacity-90 leading-relaxed mb-4 transition-all duration-300">
                   {card.description}
                 </p>
 
-                {/* Code snippet display */}
                 <div className="bg-gray-900/50 rounded-lg p-3 mb-4 border border-gray-700/50">
                   <code className="text-green-400 font-mono text-sm">
                     {card.codeSnippet}
                   </code>
                 </div>
 
-                {/* Skills Tags */}
                 <div
                   className="flex flex-wrap gap-2 transition-all duration-500"
                   style={{
@@ -415,7 +395,6 @@ export default function WhatIDoSec() {
                 </div>
               </div>
 
-              {/* Progress bar animation */}
               <div
                 className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500"
                 style={{
@@ -423,7 +402,6 @@ export default function WhatIDoSec() {
                 }}
               />
 
-              {/* Corner accent */}
               <div
                 className="absolute top-4 right-4 w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-500"
                 style={{
@@ -438,7 +416,7 @@ export default function WhatIDoSec() {
         {/* Enhanced Call to Action */}
         <div className="text-center mt-20 relative z-10">
           <div className="relative inline-block">
-            <p className={`${currentTheme.textColor} opacity-80 text-xl mb-8 relative`}>
+            <p className="opacity-80 text-xl mb-8 relative">
               Ready to bring your ideas to life?
               <span className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-lg -z-10"></span>
             </p>
@@ -452,7 +430,6 @@ export default function WhatIDoSec() {
                 <span className="text-2xl group-hover:rotate-12 transition-transform duration-300">🚀</span>
               </span>
               
-              {/* Button particle effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
             </button>
@@ -464,7 +441,7 @@ export default function WhatIDoSec() {
           {['💬', '📧', '🤝'].map((emoji, index) => (
             <div
               key={index}
-              className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-all duration-300"
+              className={`${currentTheme.button} w-12 h-12 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-all duration-300`}
               style={{
                 animation: `float ${2 + index * 0.5}s ease-in-out infinite`,
                 animationDelay: `${index * 0.3}s`

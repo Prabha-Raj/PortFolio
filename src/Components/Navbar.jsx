@@ -1,29 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 
 const navLinks = [
-  { id: "home", label: "Home", highlight: true },
-  { id: "about", label: "About Me" },
-  { id: "services", label: "What I Do" },
-  { id: "resume", label: "My Resume" },
-  { id: "portfolio", label: "Portfolio" },
-  { id: "faqs", label: "FAQs" },
-  { id: "testimonials", label: "Clients Reviews" },
-  { id: "contact", label: "Contact Me" }
+  { id: "AboutMe", label: "About Me" },
+  { id: "WhatIDo", label: "What I Do" },
+  { id: "MyResume", label: "My Resume" },
+  { id: "MyProject", label: "My Projects" },
+  { id: "ContactMe", label: "Contact Me" }
 ];
 
 const socialLinks = [
-  { icon: "ri-twitter-fill", url: "https://twitter.com" },
-  { icon: "ri-facebook-fill", url: "https://facebook.com" },
-  { icon: "ri-instagram-line", url: "https://instagram.com" },
-  { icon: "ri-github-fill", url: "https://github.com" },
-  { icon: "ri-linkedin-fill", url: "https://linkedin.com" }
+  { icon: "ri-instagram-line", url: "https://www.instagram.com/coding_lover_2.0/" },
+  { icon: "ri-github-fill", url: "https://github.com/prabhakar78824" },
+  { icon: "ri-linkedin-fill", url: "https://www.linkedin.com/in/prabhakar-rajput-5721652a3" },
+  { icon: "ri-mail-line", url: "mailto:prabhakarrajput78824@gmail.com" },
+  { icon: "ri-phone-line", url: "tel:+918218285182" }
 ];
 
 export default function Navbar() {
   const { currentTheme, themes, switchTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const { 
     navBg, 
@@ -33,6 +32,28 @@ export default function Navbar() {
     button,
     specialText 
   } = currentTheme;
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = document.querySelectorAll("section");
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 300) {
+          current = section.getAttribute("id");
+        }
+      });
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const changeTheme = () => {
@@ -56,8 +77,13 @@ export default function Navbar() {
     open: (i) => ({
       x: 0,
       opacity: 1,
-      transition: { delay: i * 0.1 }
+      transition: { delay: i * 0.1, type: "spring", stiffness: 300 }
     })
+  };
+
+  const socialIconVariants = {
+    hover: { y: -5, scale: 1.1 },
+    tap: { scale: 0.9 }
   };
 
   return (
@@ -67,71 +93,95 @@ export default function Navbar() {
         initial="hidden"
         animate="visible"
         variants={navVariants}
-        className={`${navBg} ${fontFamily} fixed w-full top-0 z-50 backdrop-blur-md border-b border-gray-800/30`}
+        className={`${navBg} ${fontFamily} fixed w-full top-0 z-50 backdrop-blur-md border-b transition-all duration-300 ${
+          scrolled ? "border-gray-800/30 py-2 shadow-lg" : "border-transparent py-3"
+        }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           {/* Logo/Brand */}
-          <motion.div
+          <motion.a
+            href="#"
             whileHover={{ scale: 1.05 }}
-            className={`${specialText} text-xl sm:text-2xl font-bold`}
+            whileTap={{ scale: 0.95 }}
+            className={`${specialText} text-xl sm:text-2xl font-bold flex items-center gap-2`}
           >
-            Prabhakar
-          </motion.div>
+            <span className="hidden sm:inline">Prabhakar</span>
+            <span className="sm:hidden">P</span>
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <div className="flex gap-4 lg:gap-6">
               {navLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.id}
                   href={`#${link.id}`}
-                  className={`${link.highlight ? highlight : textColor} hover:${highlight} transition-colors font-medium text-sm lg:text-base`}
+                  className={`relative px-1 py-2 text-sm lg:text-base font-medium ${
+                    activeSection === link.id ? highlight : textColor
+                  } hover:${highlight} transition-colors`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {link.label}
-                </a>
+                  {activeSection === link.id && (
+                    <motion.span
+                      layoutId="navUnderline"
+                      className="absolute left-0 bottom-0 w-full h-0.5 bg-current"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </motion.a>
               ))}
             </div>
 
             <div className="flex items-center gap-3 lg:gap-4">
-              <button
+              <motion.button
                 onClick={changeTheme}
                 className={`${textColor} hover:${highlight} text-xl transition-colors`}
                 aria-label="Switch theme"
+                whileHover={{ rotate: 30 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <i className="ri-contrast-2-fill"></i>
-              </button>
+              </motion.button>
               
-              <a 
+              <motion.a 
                 href="tel:+918630049758" 
                 className={`flex items-center gap-1 ${textColor} text-sm lg:text-base`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="ri-phone-fill"></i>
                 <span className="hidden lg:inline">+91 8630049758</span>
-              </a>
+              </motion.a>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
-            <button
+            <motion.button
               onClick={changeTheme}
               className={`${textColor} text-xl`}
               aria-label="Switch theme"
+              whileHover={{ rotate: 30 }}
+              whileTap={{ scale: 0.9 }}
             >
               <i className="ri-contrast-2-fill"></i>
-            </button>
+            </motion.button>
             
-            <button
+            <motion.button
               onClick={toggleMenu}
               className={`${textColor} text-2xl`}
               aria-label="Toggle menu"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               {isMenuOpen ? (
                 <i className="ri-close-line"></i>
               ) : (
                 <i className="ri-menu-line"></i>
               )}
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.nav>
@@ -147,13 +197,15 @@ export default function Navbar() {
           >
             <div className="container mx-auto px-6 flex flex-col h-full">
               {/* Close Button */}
-              <button
+              <motion.button
                 onClick={toggleMenu}
                 className={`absolute top-5 right-5 ${textColor} text-2xl`}
                 aria-label="Close menu"
+                whileHover={{ rotate: 90, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <i className="ri-close-line"></i>
-              </button>
+              </motion.button>
 
               {/* Navigation Links */}
               <motion.div 
@@ -168,35 +220,50 @@ export default function Navbar() {
                     variants={menuItemVariants}
                     custom={i}
                     whileHover={{ scale: 1.05 }}
-                    className={`text-2xl ${link.highlight ? highlight : textColor} font-bold`}
+                    whileTap={{ scale: 0.95 }}
+                    className={`text-2xl ${
+                      activeSection === link.id ? highlight : textColor
+                    } font-bold py-2`}
                     onClick={toggleMenu}
                   >
                     {link.label}
+                    {activeSection === link.id && (
+                      <motion.span
+                        layoutId="mobileNavUnderline"
+                        className="block mx-auto w-1/2 h-0.5 bg-current mt-1"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
                   </motion.a>
                 ))}
               </motion.div>
 
               {/* Contact and Social Links */}
               <div className="mt-auto pb-12 flex flex-col items-center gap-8">
-                <a 
+                <motion.a 
                   href="tel:+918630049758" 
                   className={`flex items-center gap-2 ${highlight} text-xl font-bold`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <i className="ri-phone-fill"></i>
                   <span>+91 8630049758</span>
-                </a>
+                </motion.a>
 
                 <div className="flex gap-6 text-2xl">
                   {socialLinks.map((social) => (
-                    <a
+                    <motion.a
                       key={social.icon}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`${textColor} hover:${highlight} transition-colors`}
+                      variants={socialIconVariants}
+                      whileHover="hover"
+                      whileTap="tap"
                     >
                       <i className={social.icon}></i>
-                    </a>
+                    </motion.a>
                   ))}
                 </div>
               </div>

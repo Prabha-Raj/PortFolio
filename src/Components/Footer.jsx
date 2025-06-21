@@ -1,28 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeContext'; // Adjust import path as needed
+import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
 import { 
   FiMail, FiPhone, FiMapPin, 
   FiTwitter, FiFacebook, FiInstagram, 
-  FiGithub, FiDribbble 
+  FiGithub, FiDribbble, FiCode, FiCpu, FiDatabase, FiSmartphone
 } from 'react-icons/fi';
 import { FaLinkedin } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const Footer = () => {
   const { currentTheme } = useTheme();
   
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-in-out",
-      offset: 100,
-    });
-  }, []);
-
   const [formData, setFormData] = useState({ email: '' });
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -81,7 +70,8 @@ const Footer = () => {
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 100
+        stiffness: 100,
+        damping: 10
       }
     }
   };
@@ -114,13 +104,103 @@ const Footer = () => {
     { name: "Contact Me", href: "#ContactMe" }
   ];
 
+  // Floating tech icons for background
+  const techIcons = [
+    { icon: FiCode, name: "code", size: "text-4xl" },
+    { icon: FiCpu, name: "cpu", size: "text-5xl" },
+    { icon: FiDatabase, name: "database", size: "text-3xl" },
+    { icon: FiSmartphone, name: "mobile", size: "text-2xl" }
+  ];
+
   return (
-    <footer className={`${currentTheme.bgColor} ${currentTheme.textColor} pt-16 pb-8`}>
+    <footer className={`${currentTheme.bgColor} ${currentTheme.textColor} pt-16 pb-8 relative overflow-hidden`}>
+      {/* Background elements */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {/* Gradient blobs */}
+        <motion.div 
+          className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.15, 0.1]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div 
+          className={`absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+
+        {/* Floating tech icons */}
+        {techIcons.map((tech, i) => (
+          <motion.div
+            key={tech.name}
+            className={`absolute ${currentTheme.textColor} opacity-5 ${tech.size}`}
+            style={{
+              top: `${10 + Math.random() * 80}%`,
+              left: `${5 + Math.random() * 90}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              rotate: Math.random() > 0.5 ? [0, 10, -10, 0] : [0, -10, 10, 0]
+            }}
+            transition={{
+              duration: 8 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          >
+            <tech.icon className="w-full h-full" />
+          </motion.div>
+        ))}
+
+        {/* Binary code rain effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className={`absolute top-0 ${currentTheme.textColor} font-mono text-xs whitespace-nowrap`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`
+              }}
+              initial={{ y: -100 }}
+              animate={{ y: "100vh" }}
+              transition={{
+                duration: 10 + Math.random() * 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {Array.from({ length: 30 }).map((_, j) => (
+                <span key={j} className="opacity-70">
+                  {Math.random() > 0.5 ? "1" : "0"}
+                </span>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
       <motion.div 
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -128,30 +208,55 @@ const Footer = () => {
           <motion.div 
             variants={itemVariants}
             className="flex flex-col items-center md:items-start"
-            data-aos="fade-up"
           >
-            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Contact Info</h3>
+            <motion.h3 
+              className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}
+              whileHover={{ scale: 1.02 }}
+            >
+              Contact Info
+            </motion.h3>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+              <motion.li 
+                className="flex items-center gap-3"
+                whileHover={{ x: 5 }}
+              >
+                <motion.div 
+                  className={`p-2 rounded-full ${currentTheme.button}`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <FiPhone className="text-white" />
-                </div>
+                </motion.div>
                 <a href="tel:+918640049758" className="hover:underline">+91 8640049758</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+              </motion.li>
+              <motion.li 
+                className="flex items-center gap-3"
+                whileHover={{ x: 5 }}
+              >
+                <motion.div 
+                  className={`p-2 rounded-full ${currentTheme.button}`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <FiMail className="text-white" />
-                </div>
+                </motion.div>
                 <a href="mailto:prabhakarrajput78824@gmail.com" className="hover:underline">
                   prabhakarrajput78824@gmail.com
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className={`p-2 rounded-full ${currentTheme.button}`}>
+              </motion.li>
+              <motion.li 
+                className="flex items-center gap-3"
+                whileHover={{ x: 5 }}
+              >
+                <motion.div 
+                  className={`p-2 rounded-full ${currentTheme.button}`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <FiMapPin className="text-white" />
-                </div>
+                </motion.div>
                 <span>Lucknow, Uttar Pradesh, India</span>
-              </li>
+              </motion.li>
             </ul>
           </motion.div>
 
@@ -159,20 +264,26 @@ const Footer = () => {
           <motion.div 
             variants={itemVariants}
             className="flex flex-col items-center"
-            data-aos="fade-up"
-            data-aos-delay="100"
           >
-            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Quick Links</h3>
+            <motion.h3 
+              className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}
+              whileHover={{ scale: 1.02 }}
+            >
+              Quick Links
+            </motion.h3>
             <ul className="space-y-3 text-center md:text-left">
               {quickLinks.map((link, index) => (
-                <li key={index}>
+                <motion.li 
+                  key={index}
+                  whileHover={{ x: 5 }}
+                >
                   <a 
                     href={link.href} 
                     className={`hover:${currentTheme.highlight} transition-colors`}
                   >
                     {link.name}
                   </a>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
@@ -181,10 +292,13 @@ const Footer = () => {
           <motion.div 
             variants={itemVariants}
             className="flex flex-col items-center md:items-start"
-            data-aos="fade-up"
-            data-aos-delay="200"
           >
-            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Follow Me</h3>
+            <motion.h3 
+              className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}
+              whileHover={{ scale: 1.02 }}
+            >
+              Follow Me
+            </motion.h3>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -192,7 +306,8 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3 }}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   className={`p-3 rounded-full ${currentTheme.card} text-xl ${currentTheme.textColor} ${social.color} transition-colors`}
                 >
                   {social.icon}
@@ -205,13 +320,16 @@ const Footer = () => {
           <motion.div 
             variants={itemVariants}
             className="flex flex-col items-center md:items-start"
-            data-aos="fade-up"
-            data-aos-delay="300"
           >
-            <h3 className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}>Newsletter</h3>
+            <motion.h3 
+              className={`text-xl font-bold mb-6 ${currentTheme.highlight}`}
+              whileHover={{ scale: 1.02 }}
+            >
+              Newsletter
+            </motion.h3>
             <form onSubmit={submitEventHandler} className="w-full">
               <div className="flex flex-col gap-4">
-                <input
+                <motion.input
                   type="email"
                   name="email"
                   value={formData.email}
@@ -219,6 +337,7 @@ const Footer = () => {
                   placeholder="Your email address"
                   className={`w-full p-3 rounded-lg ${currentTheme.card} border ${currentTheme.card.includes('border') ? '' : 'border-opacity-20'} focus:outline-none focus:ring-2 ${currentTheme.button.replace('bg-', 'ring-')}`}
                   required
+                  whileFocus={{ scale: 1.02 }}
                 />
                 <motion.button
                   type="submit"
@@ -234,8 +353,8 @@ const Footer = () => {
               </div>
               {successMessage && (
                 <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="mt-3 text-green-500"
                 >
                   {successMessage}
@@ -243,8 +362,8 @@ const Footer = () => {
               )}
               {errorMessage && (
                 <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="mt-3 text-red-500"
                 >
                   {errorMessage}
@@ -257,8 +376,8 @@ const Footer = () => {
         {/* Copyright */}
         <motion.div 
           className="mt-16 pt-8 border-t border-opacity-20 flex flex-col md:flex-row justify-between items-center gap-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
@@ -272,18 +391,20 @@ const Footer = () => {
             </a>. All Rights Reserved.
           </p>
           <div className="flex gap-6">
-            <a 
+            <motion.a 
               href="/privacy-policy" 
               className={`hover:${currentTheme.highlight} transition-colors`}
+              whileHover={{ scale: 1.05 }}
             >
               Privacy Policy
-            </a>
-            <a 
+            </motion.a>
+            <motion.a 
               href="/terms-of-service" 
               className={`hover:${currentTheme.highlight} transition-colors`}
+              whileHover={{ scale: 1.05 }}
             >
               Terms of Service
-            </a>
+            </motion.a>
           </div>
         </motion.div>
       </motion.div>

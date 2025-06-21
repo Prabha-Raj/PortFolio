@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 export default function HeroSec() {
   const [currentRole, setCurrentRole] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  // Theme configuration
-  const currentTheme = {
-    bgColor: "bg-gradient-to-br from-gray-900 via-black to-gray-800",
-    textColor: "text-white",
-    specialText: "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600",
-    accent: "from-blue-500/30 to-purple-500/30",
-    button: "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700",
-    accentBorder: "border-blue-500/50"
-  };
+  // Get theme from context
+  const { currentTheme } = useTheme();
   
   const roles = [
     { 
@@ -176,9 +170,9 @@ export default function HeroSec() {
         {/* Animated Background */}
         <div className="absolute inset-0 z-0">
           {/* Gradient Blobs */}
-          <div className="absolute top-20 left-20 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className={`absolute top-20 left-20 w-80 h-80 bg-gradient-to-br ${currentTheme.accent}/20 rounded-full filter blur-3xl animate-pulse`}></div>
+          <div className={`absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br ${currentTheme.accent}/20 rounded-full filter blur-3xl animate-pulse`} style={{ animationDelay: '1s' }}></div>
+          <div className={`absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br ${currentTheme.accent}/20 rounded-full filter blur-3xl animate-pulse`} style={{ animationDelay: '2s' }}></div>
 
           {/* Floating Tech Icons */}
           {techIcons.map((tech, index) => (
@@ -194,7 +188,7 @@ export default function HeroSec() {
 
           {/* Animated Code Background */}
           <div className="absolute top-0 left-0 w-full h-full opacity-5">
-            <div className="font-mono text-sm p-4 space-y-2">
+            <div className={`${currentTheme.codeFont} text-sm p-4 space-y-2`}>
               {codeSnippets.map((line, index) => (
                 <div
                   key={index}
@@ -246,7 +240,7 @@ export default function HeroSec() {
                     {roles[currentRole].title}
                   </span>
                 </div>
-                <div className="text-lg font-mono text-gray-400 bg-gray-800/50 px-4 py-2 rounded-lg border border-gray-700/50">
+                <div className={`text-lg font-mono text-gray-400 ${currentTheme.card} px-4 py-2 rounded-lg`}>
                   <TypingEffect text={roles[currentRole].code} speed={80} />
                 </div>
               </div>
@@ -288,34 +282,34 @@ export default function HeroSec() {
         <div className="flex-1 flex justify-center items-center z-10">
           <div className="relative">
             {/* Floating badges around image */}
-            <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl shadow-xl animate-bounce">
+            <div className={`absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-r ${currentTheme.accent} rounded-full flex items-center justify-center text-2xl shadow-xl animate-bounce`}>
               ⚛️
             </div>
-            <div className="absolute -bottom-6 -right-6 w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-xl shadow-xl animate-bounce" style={{ animationDelay: '0.5s' }}>
+            <div className={`absolute -bottom-6 -right-6 w-14 h-14 bg-gradient-to-r ${currentTheme.accent} rounded-full flex items-center justify-center text-xl shadow-xl animate-bounce`} style={{ animationDelay: '0.5s' }}>
               🚀
             </div>
-            <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-lg shadow-xl animate-bounce" style={{ animationDelay: '1s' }}>
+            <div className={`absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r ${currentTheme.accent} rounded-full flex items-center justify-center text-lg shadow-xl animate-bounce`} style={{ animationDelay: '1s' }}>
               💻
             </div>
-            <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-lg shadow-xl animate-bounce" style={{ animationDelay: '1.5s' }}>
+            <div className={`absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-r ${currentTheme.accent} rounded-full flex items-center justify-center text-lg shadow-xl animate-bounce`} style={{ animationDelay: '1.5s' }}>
               🎨
             </div>
 
             {/* Main profile image */}
-            <div className="w-80 h-80 max-md:w-64 max-md:h-64 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-1 shadow-2xl glow-effect">
-              <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
-                <img
-                  src="images/Prabhakar_half_size_2.jpg"
-                  alt="Prabhakar Rajput - Full Stack Developer"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+      <div className={`w-96 h-100 max-md:w-72 max-md:h-100 rounded-full bg-gradient-to-br ${currentTheme.accent} p-2 shadow-2xl glow-effect`}>
+  <div className={`w-full h-full rounded-full overflow-hidden ${currentTheme.bgColor}`}>
+    <img
+      src="images/prabhakar.jpg"
+      alt="Prabhakar Rajput - Full Stack Developer"
+      className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-500"
+      loading="lazy"
+    />
+  </div>
+</div>
 
             {/* Orbital rings */}
-            <div className="absolute inset-0 border-2 border-blue-500/30 rounded-full animate-spin" style={{ animation: 'spin 10s linear infinite' }}></div>
-            <div className="absolute inset-4 border border-purple-500/30 rounded-full animate-spin" style={{ animation: 'spin 15s linear infinite reverse' }}></div>
+            <div className={`absolute inset-0 border-2 ${currentTheme.accentBorder} rounded-full animate-spin`} style={{ animation: 'spin 10s linear infinite' }}></div>
+            <div className={`absolute inset-4 border ${currentTheme.accentBorder} rounded-full animate-spin`} style={{ animation: 'spin 15s linear infinite reverse' }}></div>
           </div>
         </div>
 
