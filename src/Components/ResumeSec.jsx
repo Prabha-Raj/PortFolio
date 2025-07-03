@@ -388,8 +388,8 @@ const experienceData = [
                   whileTap={{ scale: 0.95 }}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)} 
-                  {tab === 'experience' && ' (4 Roles)'}
-                  {tab === 'education' && ' (2 Degrees)'}
+                  {tab === 'experience' && ' '}
+                  {tab === 'education' && ''}
                   {tab === 'skills' && ' (15+ Technologies)'}
                 </motion.button>
               ))}
