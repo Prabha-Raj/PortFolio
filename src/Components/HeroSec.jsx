@@ -4,43 +4,43 @@ import { useTheme } from "../context/ThemeContext";
 export default function HeroSec() {
   const [currentRole, setCurrentRole] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   // Get theme from context
   const { currentTheme } = useTheme();
-  
+
   const roles = [
-    { 
-      title: "Web Developer", 
-      emoji: "🌐", 
-      code: "const buildWeb = () => { return 'awesome'; }", 
+    {
+      title: "Web Developer",
+      emoji: "🌐",
+      code: "const buildWeb = () => { return 'awesome'; }",
       color: "text-blue-400",
       gradient: "from-blue-400 to-cyan-400"
     },
-    { 
-      title: "Frontend Engineer", 
-      emoji: "💻", 
-      code: "<Component render={() => magic} />", 
+    {
+      title: "Frontend Engineer",
+      emoji: "💻",
+      code: "<Component render={() => magic} />",
       color: "text-purple-400",
       gradient: "from-purple-400 to-pink-400"
     },
-    { 
-      title: "UI/UX Designer", 
-      emoji: "🎨", 
-      code: "design.system({ beautiful: true })", 
+    {
+      title: "UI/UX Designer",
+      emoji: "🎨",
+      code: "design.system({ beautiful: true })",
       color: "text-pink-400",
       gradient: "from-pink-400 to-rose-400"
     },
-    { 
-      title: "React Specialist", 
-      emoji: "⚛️", 
-      code: "useEffect(() => { magic() }, [always])", 
+    {
+      title: "React Specialist",
+      emoji: "⚛️",
+      code: "useEffect(() => { magic() }, [always])",
       color: "text-cyan-400",
       gradient: "from-cyan-400 to-blue-400"
     },
-    { 
-      title: "Full Stack Developer", 
-      emoji: "🚀", 
-      code: "server.connect().then(deploy)", 
+    {
+      title: "Full Stack Developer",
+      emoji: "🚀",
+      code: "server.connect().then(deploy)",
       color: "text-green-400",
       gradient: "from-green-400 to-emerald-400"
     }
@@ -98,7 +98,7 @@ export default function HeroSec() {
   // Floating animation component
   const FloatingIcon = ({ icon, size, pos, delay, index }) => {
     const [isVisible, setIsVisible] = useState(false);
-    
+
     useEffect(() => {
       const timer = setTimeout(() => setIsVisible(true), delay * 1000);
       return () => clearTimeout(timer);
@@ -106,9 +106,8 @@ export default function HeroSec() {
 
     return (
       <div
-        className={`absolute ${pos} ${size} text-white/20 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`absolute ${pos} ${size} text-white/20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
         style={{
           animation: `float ${5 + index}s ease-in-out infinite`,
           animationDelay: `${delay}s`,
@@ -214,7 +213,7 @@ export default function HeroSec() {
                 <span className="block opacity-0 animate-pulse" style={{ animation: 'fadeInUp 1s ease-out 0.5s forwards' }}>
                   Hi, I'm
                 </span>
-                <span 
+                <span
                   className={`text-7xl max-md:text-5xl font-black ${currentTheme.specialText} gradient-animate block transform hover:scale-105 transition-transform duration-300 cursor-pointer`}
                   style={{ animation: 'fadeInUp 1s ease-out 1s forwards', opacity: 0 }}
                 >
@@ -247,7 +246,7 @@ export default function HeroSec() {
             </div>
 
             {/* Description */}
-            <p 
+            <p
               className="text-2xl max-md:text-xl opacity-80 max-w-lg"
               style={{ animation: 'fadeInUp 1s ease-out 2s forwards', opacity: 0 }}
             >
@@ -256,19 +255,19 @@ export default function HeroSec() {
             </p>
 
             {/* Action Buttons */}
-            <div 
+            <div
               className="flex items-center gap-6 max-md:flex-col max-md:gap-4"
               style={{ animation: 'fadeInUp 1s ease-out 2.5s forwards', opacity: 0 }}
             >
               <button className={`px-8 py-4 ${currentTheme.button} rounded-xl font-bold text-lg shadow-lg transform hover:scale-105 hover:shadow-xl transition-all duration-300 glow-effect`}>
-                <a href="#ViewMyWorks" className="flex items-center gap-2">
+                <a href="#MyProject" className="flex items-center gap-2">
                   <span>View My Works</span>
                   <span className="text-xl">🚀</span>
                 </a>
               </button>
-              
-              <a 
-                href="#ContactMe" 
+
+              <a
+                href="#ContactMe"
                 className={`text-xl ${currentTheme.specialText} hover:underline transition-all duration-300 flex items-center gap-2 group`}
               >
                 <span>Contact Me</span>
@@ -295,17 +294,17 @@ export default function HeroSec() {
               🎨
             </div>
 
-            {/* Main profile image */}
-      <div className={`w-96 h-100 max-md:w-72 max-md:h-100 rounded-full bg-gradient-to-br ${currentTheme.accent} p-2 shadow-2xl glow-effect`}>
-  <div className={`w-full h-full rounded-full overflow-hidden ${currentTheme.bgColor}`}>
-    <img
-      src="images/prabhakar.jpg"
-      alt="Prabhakar Rajput - Full Stack Developer"
-      className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-500"
-      loading="lazy"
-    />
-  </div>
-</div>
+            <div className={`w-96 h-96 max-md:w-60 max-md:h-60 rounded-full bg-gradient-to-br ${currentTheme.accent} p-2 shadow-2xl glow-effect`}>
+              <div className={`w-full h-full rounded-full overflow-hidden ${currentTheme.bgColor}`}>
+                <img
+                  src="images/prabhakar.jpg"
+                  alt="Prabhakar Rajput - Full Stack Developer"
+                  className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
 
             {/* Orbital rings */}
             <div className={`absolute inset-0 border-2 ${currentTheme.accentBorder} rounded-full animate-spin`} style={{ animation: 'spin 10s linear infinite' }}></div>

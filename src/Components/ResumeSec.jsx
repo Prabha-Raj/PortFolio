@@ -88,136 +88,136 @@ export default function ResumeSec() {
     }
   ];
 
-const experienceData = [
-  {
-    title: "Full Stack Developer (MERN)",
-    period: "January 2025 - Present",
-    company: "DigiCoders Technologies",
-    location: "Lucknow",
-    status: "Current Role",
-    description: "Leading MERN stack development team for enterprise clients.",
-    highlights: [
-      "Architected 6+ production applications",
-      "Reduced API response time by 65%",
-      "Authentication & Autherization",
-      "Mentored junior developers",
-      "Introduced testing standards"
-    ],
-    projects: [
-      {
-        name: "Tech Connect",
-        description: "Video conferencing app with role-based access and admin tracking",
-        technologies: ["React", "Node.js", "MongoDB", "JWT", "Jitsi SDK"],
-        impact: "Enables secure, scheduled classes and meetings with full participant tracking",
-        features: ["Course-based access", "Student/Admin dashboards", "Join/Leave tracking"]
-      },
-      {
-        name: "OnePoint Store",
-        description: "Electronics service portal for repairs & installations",
-        technologies: ["React", "Flask", "Bootstrap"],
-        impact: "Streamlined service booking process for 100+ users",
-        features: ["Booking management", "Technician dashboard", "Responsive design"]
-      }
-    ],
-    icon: "💼",
-    color: "from-purple-500 to-pink-500"
-  },
-  {
-    title: "Web Developer",
-    period: "May 2024 - December 2024",
-    company: "DigiCoders Technologies",
-    location: "Lucknow",
-    status: "7 months",
-    description: "Full stack development with focus on MERN stack applications.",
-    highlights: [
-      "Delivered 4 production-ready MERN projects",
-      "Implemented JWT authentication systems",
-      "Optimized React performance by 30%",
-      "Integrated payment gateways and mapping APIs"
-    ],
-    projects: [
-      {
-        name: "My Job Market",
-        description: "A job portal with role-based user and admin panels",
-        technologies: ["React", "Node.js", "MongoDB", "JWT", "Tailwind"],
-        impact: "Live job platform for employers and job seekers",
-        features: ["Job listing/posting", "User authentication", "Admin control"]
-      },
-      {
-        name: "Taxi Teaching Platform",
-        description: "Learning management app with tests and video content",
-        technologies: ["React", "MongoDB", "Express", "JWT"],
-        impact: "Adopted by coaching center for online taxi exam prep",
-        features: ["Quizzes", "Video library", "Multi-dashboard support"]
-      }
-    ],
-    icon: "🚀",
-    color: "from-blue-500 to-purple-500"
-  },
-  {
-    title: "Junior Developer",
-    period: "December 2023 - May 2024",
-    company: "DigiCoders Technologies",
-    location: "Lucknow",
-    status: "6 months",
-    description: "Frontend development and feature implementation.",
-    highlights: [
-      "Built 10+ reusable React components",
-      "Fixed 50+ critical production bugs",
-      "Reduced CSS bundle size by 40%",
-      "Implemented responsive designs for 3 client projects"
-    ],
-    projects: [
-      {
-        name: "Varanasi Ayodhya Tour Site",
-        description: "Tour booking site for a religious tourism company",
-        technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-        impact: "Helped increase tourist inquiries via online platform",
-        features: ["Contact forms", "Responsive sections", "Gallery"]
-      },
-      {
-        name: "SSF Berries Website",
-        description: "Business site for a fruit company",
-        technologies: ["HTML", "CSS", "JS"],
-        impact: "Enhanced brand visibility and trust online",
-        features: ["Landing page", "About/Contact", "Mobile-friendly"]
-      }
-    ],
-    icon: "⚡",
-    color: "from-green-500 to-blue-500"
-  },
-  {
-    title: "Summer Intern (Python/Django)",
-    period: "July 2023 - September 2023",
-    company: "Softpro India Computer Technologies",
-    location: "Lucknow",
-    status: "3 months",
-    description: "Intensive training in Python and Django web development.",
-    highlights: [
-      "Developed 3 Django applications with CRUD functionality",
-      "Built REST APIs with Django REST Framework",
-      "Optimized database queries reducing load time by 40%"
-    ],
-    projects: [
-      {
-        name: "ErrorQuiz App",
-        description: "Quiz app with certificate generation for test takers",
-        technologies: ["React", "Node.js", "MongoDB", "jsPDF"],
-        impact: "Helped 100+ learners self-assess and receive auto-certificates",
-        features: ["Quiz selection", "Score result", "jsPDF certificate download"]
-      },
-      {
-        name: "Blog Management System",
-        description: "Blog platform with admin authentication and user features",
-        technologies: ["Django", "PostgreSQL", "Bootstrap"],
-        impact: "Used internally for Django training and demos",
-        features: ["User auth", "Comment system", "Post categories"]
-      }
-    ],
-    icon: "🌱",
-    color: "from-yellow-500 to-green-500"
-  }
-];
+  const experienceData = [
+    {
+      title: "Full Stack Developer (MERN)",
+      period: "January 2025 - Present",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "Current Role",
+      description: "Leading MERN stack development team for enterprise clients.",
+      highlights: [
+        "Architected 6+ production applications",
+        "Reduced API response time by 65%",
+        "Authentication & Autherization",
+        "Mentored junior developers",
+        "Introduced testing standards"
+      ],
+      projects: [
+        {
+          name: "Tech Connect",
+          description: "Video conferencing app with role-based access and admin tracking",
+          technologies: ["React", "Node.js", "MongoDB", "JWT", "Jitsi SDK"],
+          impact: "Enables secure, scheduled classes and meetings with full participant tracking",
+          features: ["Course-based access", "Student/Admin dashboards", "Join/Leave tracking"]
+        },
+        {
+          name: "OnePoint Store",
+          description: "Electronics service portal for repairs & installations",
+          technologies: ["React", "Flask", "Bootstrap"],
+          impact: "Streamlined service booking process for 100+ users",
+          features: ["Booking management", "Technician dashboard", "Responsive design"]
+        }
+      ],
+      icon: "💼",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "Web Developer",
+      period: "May 2024 - December 2024",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "7 months",
+      description: "Full stack development with focus on MERN stack applications.",
+      highlights: [
+        "Delivered 4 production-ready MERN projects",
+        "Implemented JWT authentication systems",
+        "Optimized React performance by 30%",
+        "Integrated payment gateways and mapping APIs"
+      ],
+      projects: [
+        {
+          name: "My Job Market",
+          description: "A job portal with role-based user and admin panels",
+          technologies: ["React", "Node.js", "MongoDB", "JWT", "Tailwind"],
+          impact: "Live job platform for employers and job seekers",
+          features: ["Job listing/posting", "User authentication", "Admin control"]
+        },
+        {
+          name: "Taxi Teaching Platform",
+          description: "Learning management app with tests and video content",
+          technologies: ["React", "MongoDB", "Express", "JWT"],
+          impact: "Adopted by coaching center for online taxi exam prep",
+          features: ["Quizzes", "Video library", "Multi-dashboard support"]
+        }
+      ],
+      icon: "🚀",
+      color: "from-blue-500 to-purple-500"
+    },
+    {
+      title: "Junior Developer",
+      period: "December 2023 - May 2024",
+      company: "DigiCoders Technologies",
+      location: "Lucknow",
+      status: "6 months",
+      description: "Frontend development and feature implementation.",
+      highlights: [
+        "Built 10+ reusable React components",
+        "Fixed 50+ critical production bugs",
+        "Reduced CSS bundle size by 40%",
+        "Implemented responsive designs for 3 client projects"
+      ],
+      projects: [
+        {
+          name: "Varanasi Ayodhya Tour Site",
+          description: "Tour booking site for a religious tourism company",
+          technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+          impact: "Helped increase tourist inquiries via online platform",
+          features: ["Contact forms", "Responsive sections", "Gallery"]
+        },
+        {
+          name: "SSF Berries Website",
+          description: "Business site for a fruit company",
+          technologies: ["HTML", "CSS", "JS"],
+          impact: "Enhanced brand visibility and trust online",
+          features: ["Landing page", "About/Contact", "Mobile-friendly"]
+        }
+      ],
+      icon: "⚡",
+      color: "from-green-500 to-blue-500"
+    },
+    {
+      title: "Summer Intern (Python/Django)",
+      period: "July 2023 - September 2023",
+      company: "Softpro India Computer Technologies",
+      location: "Lucknow",
+      status: "3 months",
+      description: "Intensive training in Python and Django web development.",
+      highlights: [
+        "Developed 3 Django applications with CRUD functionality",
+        "Built REST APIs with Django REST Framework",
+        "Optimized database queries reducing load time by 40%"
+      ],
+      projects: [
+        {
+          name: "ErrorQuiz App",
+          description: "Quiz app with certificate generation for test takers",
+          technologies: ["React", "Node.js", "MongoDB", "jsPDF"],
+          impact: "Helped 100+ learners self-assess and receive auto-certificates",
+          features: ["Quiz selection", "Score result", "jsPDF certificate download"]
+        },
+        {
+          name: "Blog Management System",
+          description: "Blog platform with admin authentication and user features",
+          technologies: ["Django", "PostgreSQL", "Bootstrap"],
+          impact: "Used internally for Django training and demos",
+          features: ["User auth", "Comment system", "Post categories"]
+        }
+      ],
+      icon: "🌱",
+      color: "from-yellow-500 to-green-500"
+    }
+  ];
 
 
   const skills = {
@@ -228,14 +228,14 @@ const experienceData = [
   };
 
   return (
-    <section 
+    <section
       id="MyResume"
       className={`${currentTheme.bgColor} min-h-screen py-20 px-4 sm:px-8 relative overflow-hidden`}
     >
       {/* Enhanced Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
         {/* Gradient blobs */}
-        <motion.div 
+        <motion.div
           className={`absolute top-1/4 left-1/4 w-64 h-64 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
           animate={{
             scale: [1, 1.1, 1],
@@ -247,8 +247,8 @@ const experienceData = [
             ease: "easeInOut"
           }}
         ></motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className={`absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full filter blur-3xl opacity-10 bg-gradient-to-br ${currentTheme.accent}`}
           animate={{
             scale: [1, 1.2, 1],
@@ -261,7 +261,7 @@ const experienceData = [
             delay: 2
           }}
         ></motion.div>
-        
+
         {/* Binary code rain effect */}
         <div className="absolute inset-0 overflow-hidden opacity-5">
           {Array.from({ length: 30 }).map((_, i) => (
@@ -338,7 +338,7 @@ const experienceData = [
         </svg>
       </div>
 
-      <motion.div 
+      <motion.div
         className="relative z-10"
         initial="hidden"
         animate="visible"
@@ -346,7 +346,7 @@ const experienceData = [
       >
         {/* Header Section */}
         <motion.div className="text-center mb-16" variants={itemVariants}>
-          <motion.div 
+          <motion.div
             className="inline-block"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -355,14 +355,14 @@ const experienceData = [
               📄 Resume Overview
             </span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className={`${currentTheme.textColor} text-4xl md:text-6xl font-bold mt-8 mb-4`}
             variants={itemVariants}
           >
             Professional Journey
           </motion.h2>
-          <motion.p 
+          <motion.p
             className={`${currentTheme.highlight} text-xl max-w-2xl mx-auto`}
             variants={itemVariants}
           >
@@ -370,7 +370,7 @@ const experienceData = [
           </motion.p>
 
           {/* Interactive Tab Navigation */}
-          <motion.div 
+          <motion.div
             className="flex justify-center mt-12 mb-8"
             variants={itemVariants}
           >
@@ -379,15 +379,14 @@ const experienceData = [
                 <motion.button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    activeTab === tab
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeTab === tab
                       ? `${currentTheme.button} text-white shadow-lg`
                       : `${currentTheme.textColor} hover:bg-gray-700/50`
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)} 
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
                   {tab === 'experience' && ' '}
                   {tab === 'education' && ''}
                   {tab === 'skills' && ' (15+ Technologies)'}
@@ -416,7 +415,7 @@ const experienceData = [
                     {/* Card Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
-                        <motion.div 
+                        <motion.div
                           className={`text-3xl bg-gradient-to-r ${exp.color} p-3 rounded-xl text-white shadow-lg`}
                           animate={{
                             rotate: hoveredItem === `exp-${index}` ? [0, 10, -10, 0] : 0
@@ -436,11 +435,10 @@ const experienceData = [
                           <p className="text-gray-400 text-sm">{exp.location} • {exp.period}</p>
                         </div>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        exp.status.includes('Current') 
-                          ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${exp.status.includes('Current')
+                          ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                           : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                      }`}>
+                        }`}>
                         {exp.status}
                       </span>
                     </div>
@@ -464,8 +462,8 @@ const experienceData = [
                       </h4>
                       <div className="space-y-2">
                         {exp.highlights.slice(0, 3).map((highlight, i) => (
-                          <motion.div 
-                            key={i} 
+                          <motion.div
+                            key={i}
                             className="flex items-start space-x-3 group/item"
                             whileHover={{ x: 5 }}
                           >
@@ -510,13 +508,13 @@ const experienceData = [
                               {expandedProject === `${index}-${pIndex}` ? '🔼' : '🔽'}
                             </motion.button>
                           </div>
-                          
+
                           <p className="text-gray-300 text-sm mb-3">{project.description}</p>
-                          
+
                           <div className="flex flex-wrap gap-2 mb-3">
                             {project.technologies.map((tech, tIndex) => (
-                              <motion.span 
-                                key={tIndex} 
+                              <motion.span
+                                key={tIndex}
                                 className={`text-xs px-3 py-1 rounded-full ${currentTheme.card} ${currentTheme.specialText} transition-colors`}
                                 whileHover={{ scale: 1.1 }}
                               >
@@ -524,9 +522,9 @@ const experienceData = [
                               </motion.span>
                             ))}
                           </div>
-                          
+
                           {expandedProject === `${index}-${pIndex}` && (
-                            <motion.div 
+                            <motion.div
                               className="mt-4 space-y-2"
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
@@ -542,8 +540,8 @@ const experienceData = [
                                 <p className="text-sm text-gray-300 mb-2">Key Features:</p>
                                 <div className="flex flex-wrap gap-2">
                                   {project.features.map((feature, fIndex) => (
-                                    <motion.span 
-                                      key={fIndex} 
+                                    <motion.span
+                                      key={fIndex}
                                       className="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded"
                                       initial={{ scale: 0.8 }}
                                       animate={{ scale: 1 }}
@@ -567,7 +565,7 @@ const experienceData = [
 
           {/* Education Section */}
           {activeTab === 'education' && (
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto"
               variants={containerVariants}
             >
@@ -581,7 +579,7 @@ const experienceData = [
                     variants={cardVariants}
                   >
                     <div className="flex items-start space-x-6">
-                      <motion.div 
+                      <motion.div
                         className={`text-4xl bg-gradient-to-r ${currentTheme.accent} p-4 rounded-xl shadow-lg`}
                         animate={{
                           y: [0, -5, 0],
@@ -601,7 +599,7 @@ const experienceData = [
                             <p className="text-gray-400">{edu.period}</p>
                           </div>
                           <div className="text-right">
-                            <motion.div 
+                            <motion.div
                               className={`bg-gradient-to-r ${currentTheme.accent} text-white px-4 py-2 rounded-full font-bold text-lg`}
                               whileHover={{ scale: 1.05 }}
                             >
@@ -610,13 +608,13 @@ const experienceData = [
                             <p className="text-sm text-gray-400 mt-1">Grade</p>
                           </div>
                         </div>
-                        
+
                         <p className={`${currentTheme.textColor} opacity-90 mb-6`}>{edu.description}</p>
-                        
+
                         <div className="grid md:grid-cols-2 gap-4">
                           {edu.highlights.map((highlight, i) => (
-                            <motion.div 
-                              key={i} 
+                            <motion.div
+                              key={i}
                               className="flex items-start space-x-3 group"
                               whileHover={{ x: 5 }}
                             >
@@ -637,14 +635,14 @@ const experienceData = [
 
           {/* Skills Section */}
           {activeTab === 'skills' && (
-            <motion.div 
+            <motion.div
               className="max-w-6xl mx-auto"
               variants={containerVariants}
             >
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {Object.entries(skills).map(([category, skillList]) => (
-                  <motion.div 
-                    key={category} 
+                  <motion.div
+                    key={category}
                     className={`${currentTheme.card} p-6 rounded-2xl border ${currentTheme.bgColor === 'bg-black' ? 'border-gray-800' : 'border-gray-200'} transition-all duration-300`}
                     variants={itemVariants}
                     whileHover="hover"
@@ -669,13 +667,13 @@ const experienceData = [
                     </h3>
                     <div className="space-y-3">
                       {skillList.map((skill, index) => (
-                        <motion.div 
-                          key={index} 
+                        <motion.div
+                          key={index}
                           className="flex items-center justify-between group"
                           whileHover={{ x: 5 }}
                         >
                           <span className={`${currentTheme.textColor} group-hover:text-purple-300 transition-colors`}>{skill}</span>
-                          <motion.div 
+                          <motion.div
                             className={`w-3 h-3 rounded-full bg-gradient-to-r ${currentTheme.accent}`}
                             animate={{
                               scale: [1, 1.3, 1],
@@ -697,17 +695,18 @@ const experienceData = [
         </div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           variants={itemVariants}
         >
           <div className="inline-flex items-center space-x-4">
-            <motion.button 
+            <motion.button
               className={`${currentTheme.button} text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.span
+              <motion.a
+                href="#ContactMe"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{
                   duration: 2,
@@ -715,25 +714,18 @@ const experienceData = [
                 }}
               >
                 📧
-              </motion.span>
+              </motion.a>
               <span>Get in Touch</span>
             </motion.button>
-            <motion.button 
+            <motion.a
+              href="/resume/Prabhakar_Rajput.pdf"
+              download
               className={`border-2 border-purple-500 ${currentTheme.specialText} px-8 py-4 rounded-full font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center space-x-2`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.span
-                animate={{ y: [0, -5, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity
-                }}
-              >
-                📄
-              </motion.span>
-              <span>Download Resume</span>
-            </motion.button>
+              <span>Download Résumé</span>
+            </motion.a>
           </div>
         </motion.div>
       </motion.div>

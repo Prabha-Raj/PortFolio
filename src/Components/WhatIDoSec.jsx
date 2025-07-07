@@ -425,31 +425,15 @@ export default function WhatIDoSec() {
               className={`${currentTheme.button} text-white px-12 py-6 text-xl font-bold rounded-full shadow-2xl relative overflow-hidden group transition-all duration-500 hover:scale-105`}
               style={{ animation: 'glow 2s ease-in-out infinite alternate' }}
             >
-              <span className="relative z-10 flex items-center gap-3">
+              <a href="#ContactMe" className="relative z-10 flex items-center gap-3">
                 Let's Create Something Amazing
                 <span className="text-2xl group-hover:rotate-12 transition-transform duration-300">🚀</span>
-              </span>
+              </a>
               
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
             </button>
           </div>
-        </div>
-
-        {/* Floating contact icons */}
-        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 space-y-4 z-20">
-          {['💬', '📧', '🤝'].map((emoji, index) => (
-            <div
-              key={index}
-              className={`${currentTheme.button} w-12 h-12 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-all duration-300`}
-              style={{
-                animation: `float ${2 + index * 0.5}s ease-in-out infinite`,
-                animationDelay: `${index * 0.3}s`
-              }}
-            >
-              <span className="text-xl">{emoji}</span>
-            </div>
-          ))}
         </div>
       </section>
     </>

@@ -620,7 +620,8 @@ const ProjectSec = () => {
         {/* Floating contact icons */}
         <div className="fixed right-4 sm:right-6 top-1/2 transform -translate-y-1/2 space-y-3 z-20">
           {['💬', '📧', '🤝'].map((emoji, index) => (
-            <motion.div
+            <motion.a
+            href="#ContactMe"
               key={index}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -631,7 +632,7 @@ const ProjectSec = () => {
               }}
             >
               {emoji}
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </section>

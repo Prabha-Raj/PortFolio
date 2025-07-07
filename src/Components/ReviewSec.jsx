@@ -303,13 +303,14 @@ export default function ReviewSec() {
                     >
                         Let's create something amazing together and make your business the next success story!
                     </motion.p>
-                    <motion.button
+                    <motion.a
+                        href="#ContactMe"
                         className={`${currentTheme.button} text-white px-8 py-3 rounded-full font-semibold shadow-lg`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         Start Your Project Today 🚀
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
             </div>
         </motion.section>

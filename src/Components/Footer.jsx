@@ -89,10 +89,10 @@ const Footer = () => {
   const socialLinks = [
     { icon: <FiTwitter />, url: "https://x.com/codingworld434", color: "hover:text-blue-400" },
     { icon: <FiFacebook />, url: "https://www.facebook.com/profile.php?id=100057055627269", color: "hover:text-blue-600" },
-    { icon: <FiInstagram />, url: "https://www.instagram.com/coding_lover_boy_2.0", color: "hover:text-pink-500" },
+    { icon: <FiInstagram />, url: "https://www.instagram.com/dev.prabhakar.life", color: "hover:text-pink-500" },
     { icon: <FiGithub />, url: "https://github.com/Prabha-Raj", color: "hover:text-gray-300" },
-    { icon: <FiDribbble />, url: "https://dribbble.com", color: "hover:text-pink-400" },
-    { icon: <FaLinkedin />, url: "https://linkedin.com", color: "hover:text-blue-500" }
+    // { icon: <FiDribbble />, url: "https://dribbble.com", color: "hover:text-pink-400" },
+    { icon: <FaLinkedin />, url: "www.linkedin.com/in/prabhakar-rajput-5721652a3", color: "hover:text-blue-500" }
   ];
 
   const quickLinks = [

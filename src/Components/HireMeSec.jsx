@@ -53,6 +53,61 @@ export default function HireMeSec() {
     tap: { scale: 0.95 }
   };
 
+
+const socials = [
+  {
+    href: "tel:+918630049758",
+    label: "Call Prabhakar Rajput",
+    svg: (
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+               19.79 19.79 0 0 1-8.63-3.07
+               19.5 19.5 0 0 1-6-6
+               19.79 19.79 0 0 1-3.07-8.67
+               A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72
+               12.84 12.84 0 0 0 .7 2.81
+               2 2 0 0 1-.45 2.11L8.09 9.91
+               a16 16 0 0 0 6 6l1.27-1.27
+               a2 2 0 0 1 2.11-.45
+               12.84 12.84 0 0 0 2.81.7
+               A2 2 0 0 1 22 16.92z" />
+    ),
+  },
+    {
+    href: "https://wa.me/918630049758",
+    label: "Chat on WhatsApp",
+    svg: (
+      <>
+        <path d="M16.2 13.6c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1c-.2-.1-.9-.4-1.7-1.1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.4s0-.3-.1-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.4 0-.6.2-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.1 1.6 2.4 3.9 3.3 2.4.9 2.4.6 2.9.6.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .2-1.1 0-.1-.1-.2-.3-.3z"/>
+        <path d="M12 2a10 10 0 0 0-8.5 15l-1.5 4.5 4.7-1.5A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </>
+    ),
+  },
+  {
+    href: "mailto:prabhakarrajput78824@gmail.com",
+    label: "Send Email to Prabhakar",
+    svg: (
+      <>
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12
+                 c0 1.1-.9 2-2 2H4
+                 c-1.1 0-2-.9-2-2V6
+                 c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </>
+    ),
+  },
+  {
+    href: "https://www.google.com/maps/place/Aliganj,+Lucknow,+Uttar+Pradesh/@26.8975791,80.9362831,3107m/data=!3m2!1e3!4b1!4m6!3m5!1s0x399957cbf43233f5:0x3a22b7c8a77962f0!8m2!3d26.8983705!4d80.9491069!16s%2Fg%2F122fptvt?entry=ttu",
+    label: "Location - Aliganj, Lucknow",
+    svg: (
+      <>
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13 a9 9 0 0 1 18 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </>
+    ),
+  },
+];
+
+
   return (
     <section className="relative overflow-hidden py-20">
       <div 
@@ -115,7 +170,7 @@ export default function HireMeSec() {
             </motion.a>
 
             <motion.a
-              href="#Projects"
+              href="#MyProject"
               variants={itemVariants}
               whileHover="hover"
               whileTap="tap"
@@ -134,30 +189,42 @@ export default function HireMeSec() {
             </motion.a>
           </div>
 
-          <motion.div 
-            variants={itemVariants}
-            className="flex items-center gap-4 mt-8"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${currentTheme.textColor}`}>
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${currentTheme.textColor}`}>
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${currentTheme.textColor}`}>
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-            </div>
-          </motion.div>
+
+<motion.div
+  variants={itemVariants}
+  className="flex items-center gap-4 mt-8"
+  data-aos="fade-up"
+  data-aos-delay="400"
+>
+  {socials.map(({ href, label, svg }) => (
+    <motion.a
+      key={label}
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-purple-500 transition-colors duration-300"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={currentTheme.textColor}
+      >
+        {svg}
+      </svg>
+    </motion.a>
+  ))}
+</motion.div>
+
         </div>
       </motion.div>
 

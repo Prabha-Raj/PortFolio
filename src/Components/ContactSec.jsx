@@ -3,15 +3,15 @@ import { useTheme } from '../context/ThemeContext'; // Adjust import path as nee
 import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
-import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const ContactSec = () => {
   const { currentTheme } = useTheme();
-  
+
   useEffect(() => {
-    AOS.init({ 
+    AOS.init({
       duration: 800,
       once: true
     });
@@ -54,7 +54,7 @@ const ContactSec = () => {
         },
         'PBRLIR32x6QxbKOTz'
       );
-      
+
       setSuccessMessage('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -89,35 +89,35 @@ const ContactSec = () => {
 
   const buttonVariants = {
     rest: { scale: 1 },
-    hover: { 
+    hover: {
       scale: 1.05,
-      backgroundColor: currentTheme.button.includes('bg-') ? 
+      backgroundColor: currentTheme.button.includes('bg-') ?
         currentTheme.button.split(' ')[0].replace('bg-', '') : 'var(--primary)'
     },
     tap: { scale: 0.98 }
   };
 
   return (
-    <section 
-      id='ContactMe' 
+    <section
+      id='ContactMe'
       className={`min-h-screen py-20 px-6 md:px-12 lg:px-24 ${currentTheme.bgColor}`}
     >
-      <motion.div 
+      <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={containerVariants}
       >
-        <motion.h1 
+        <motion.h1
           variants={itemVariants}
           className={`text-5xl md:text-6xl font-bold mb-4 ${currentTheme.highlight}`}
           data-aos="fade-down"
         >
           Let's Collaborate
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           variants={itemVariants}
           className={`text-xl mb-12 max-w-3xl ${currentTheme.textColor}`}
           data-aos="fade-down"
@@ -128,14 +128,14 @@ const ContactSec = () => {
 
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Contact Info */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="lg:w-1/2"
             data-aos="fade-right"
           >
             <div className={`p-8 rounded-2xl backdrop-blur-sm ${currentTheme.card}`}>
               <h2 className={`text-3xl font-bold mb-6 ${currentTheme.highlight}`}>Contact Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className={`p-3 rounded-full ${currentTheme.button}`}>
@@ -155,8 +155,8 @@ const ContactSec = () => {
                   </div>
                   <div>
                     <h3 className={`text-lg font-semibold ${currentTheme.textColor}`}>Phone</h3>
-                    <a 
-                      href="tel:+918630049758" 
+                    <a
+                      href="tel:+918630049758"
                       className={`${currentTheme.textColor} opacity-80 hover:opacity-100 transition-opacity`}
                     >
                       +91 8630049758
@@ -170,8 +170,8 @@ const ContactSec = () => {
                   </div>
                   <div>
                     <h3 className={`text-lg font-semibold ${currentTheme.textColor}`}>Email</h3>
-                    <a 
-                      href="mailto:prabhakarrajput78824@gmail.com" 
+                    <a
+                      href="mailto:prabhakarrajput78824@gmail.com"
                       className={`${currentTheme.textColor} opacity-80 hover:opacity-100 transition-opacity`}
                     >
                       prabhakarrajput78824@gmail.com
@@ -184,9 +184,10 @@ const ContactSec = () => {
                 <h3 className={`text-lg font-semibold mb-4 ${currentTheme.textColor}`}>Connect with me</h3>
                 <div className="flex gap-4">
                   {[
-                    { icon: <FaLinkedin />, url: "https://linkedin.com" },
-                    { icon: <FaGithub />, url: "https://github.com" },
-                    { icon: <FaTwitter />, url: "https://twitter.com" }
+                    { icon: <FaLinkedin />, url: "www.linkedin.com/in/prabhakar-rajput-5721652a3" },
+                    { icon: <FaGithub />, url: "https://github.com/Prabha-Raj/" },
+                    { icon: <FaTwitter />, url: "https://x.com/codingworld434", color: "hover:text-blue-400" },
+                    { icon: <FaInstagram />, url: "https://www.instagram.com/dev.prabhakar.life/" }
                   ].map((social, index) => (
                     <motion.a
                       key={index}
@@ -205,7 +206,7 @@ const ContactSec = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="lg:w-1/2"
             data-aos="fade-left"
@@ -213,11 +214,11 @@ const ContactSec = () => {
           >
             <div className={`p-8 rounded-2xl backdrop-blur-sm ${currentTheme.card}`}>
               <h2 className={`text-3xl font-bold mb-6 ${currentTheme.highlight}`}>Send Me a Message</h2>
-              
+
               <form onSubmit={submitEventHandler} className="space-y-6">
                 <motion.div variants={itemVariants}>
-                  <label 
-                    htmlFor="name" 
+                  <label
+                    htmlFor="name"
                     className={`block text-lg font-medium mb-2 ${currentTheme.textColor}`}
                   >
                     Your Name
@@ -235,8 +236,8 @@ const ContactSec = () => {
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
-                  <label 
-                    htmlFor="email" 
+                  <label
+                    htmlFor="email"
                     className={`block text-lg font-medium mb-2 ${currentTheme.textColor}`}
                   >
                     Your Email
@@ -254,8 +255,8 @@ const ContactSec = () => {
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
-                  <label 
-                    htmlFor="message" 
+                  <label
+                    htmlFor="message"
                     className={`block text-lg font-medium mb-2 ${currentTheme.textColor}`}
                   >
                     Your Message
@@ -294,7 +295,7 @@ const ContactSec = () => {
                 </motion.div>
 
                 {successMessage && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`p-4 rounded-lg bg-green-500/10 text-green-500`}
@@ -304,7 +305,7 @@ const ContactSec = () => {
                 )}
 
                 {errorMessage && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`p-4 rounded-lg bg-red-500/10 text-red-500`}

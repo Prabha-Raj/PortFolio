@@ -225,13 +225,14 @@ export default function FAQsSec() {
                                 Get affordable, professional web solutions that help your business grow online
                             </p>
 
-                            <motion.button
+                            <motion.a
+                                href="#ContactMe"
                                 className={`${currentTheme.button} text-white px-6 py-3 rounded-full font-semibold`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 Get Free Quote 💰
-                            </motion.button>
+                            </motion.a>
                         </motion.div>
 
                         {/* Floating Tech Icons */}
